@@ -1,5 +1,6 @@
 package com.um.mt.kyle.parser;
 
+import com.sun.org.apache.xpath.internal.operations.Variable;
 import com.um.mt.kyle.lexer.Lexer;
 import com.um.mt.kyle.lexer.Token;
 
@@ -12,6 +13,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import com.um.mt.kyle.lexer.TokenClass;
 import org.w3c.dom.Document;
@@ -22,8 +24,11 @@ public class Parser {
     private Lexer lexer = null;
     int tokenIndex = 0;
     private ArrayList<Token> tokens;
-    private ArrayList<String> errorlog;
+    private ArrayList<String> errorLog;
+    private Stack<BlockStackFrame> stackFrames;
     private Document doc;
+    private int identifierGen = 1;
+    private boolean useLineNumbers = true;
 
     public Parser (String fileToParse){
         BufferedReader br = null;
@@ -44,7 +49,8 @@ public class Parser {
 
     private void parse (){
         tokens = lexer.getTokens();
-        errorlog = new ArrayList<String>();
+        errorLog = new ArrayList<String>();
+        stackFrames = new Stack<BlockStackFrame>();
         slx();
 
         dumpErrors();
@@ -64,6 +70,10 @@ public class Parser {
             Element mainRootElement = doc.createElement("Slx");
             doc.appendChild(mainRootElement);
 
+            //Global Stack Frame for type checking tests
+            BlockStackFrame root = new BlockStackFrame(null);
+            stackFrames.push(root);
+
             // append child elements to root element
 
             Node child = isStatement();
@@ -77,8 +87,16 @@ public class Parser {
                 }
             }
 
+            //--------------------------Pop root from stack-----------------------------------
+            stackFrames.pop();
+            //---------------------------------------------------------------------------------
+
             if (!isDone()){
-                System.out.println("Not all tokens were used :(");
+                System.out.println("Error: Not all tokens were used");
+            }
+
+            if (stackFrames.size()!=0){
+                System.out.println("Error: Frame stack is not empty");
             }
 
 
@@ -348,6 +366,8 @@ public class Parser {
 
         if (identifier != null){
             if (isSymbol("(",false)) {
+                parent.appendChild(identifier);
+                //wasFunctionDeclared(identifier.getTextContent(),"",currentTokenLineNumber());
 
                 int lastTokenIndex = tokenIndex;
 
@@ -366,6 +386,8 @@ public class Parser {
                     tokenIndex = lastTokenIndex;
                     errorLogger(lineNumber,TokenClass.KEY_SYMBOL,")");
                 }
+
+                return  parent;
             }
         }
 
@@ -414,16 +436,21 @@ public class Parser {
 
         int lastTokenIndex = tokenIndex;
 
+
         Node child = isLiteral();
 
         if (child == null){
             tokenIndex = lastTokenIndex;
-            child = isIdentifier();
+            child = isFunctionCall();
         }
 
         if (child == null){
             tokenIndex = lastTokenIndex;
-            child = isFunctionCall();
+            child = isIdentifier();
+            int lineNumber = currentTokenLineNumber();
+            if (child != null){
+                wasVariableDeclared(child.getTextContent(), lineNumber);
+            }
         }
 
         if (child == null){
@@ -547,6 +574,18 @@ public class Parser {
                 tokenIndex = lastTokenIndex;
             }
 
+            VariableStruct var =  new VariableStruct(identifier.getTextContent(),type.getTextContent());
+            BlockStackFrame block = stackFrames.peek();
+            if (block instanceof FunctionStackFrame){
+                FunctionStackFrame func = (FunctionStackFrame)block;
+                if (!func.addPram(var)){
+                    errorLogger(lineNumber, TokenClass.TYPE, "Duplicate identifier name '" + var.getIdentifier() +
+                            "' in function '" + func.getIdentifier(),false);
+                }
+            }else{
+                errorLogger(lineNumber, TokenClass.TYPE, "Prams should be in a function");
+            }
+
             parent.appendChild(type);
 
             return parent;
@@ -605,12 +644,23 @@ public class Parser {
 
             Node identifier = isIdentifier();
 
+            boolean okIdentifier = true;
+
             if (identifier == null) {
                 identifier = doc.createElement("Identifier");
                 identifier.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                 tokenIndex = lastTokenIndex;
+                okIdentifier = false;
             }
+
+            //-----------------------Create stack Frame------------------------------
+            String funcIdentifier = identifier.getTextContent() + (okIdentifier? "" : identifierGen++);
+            BlockStackFrame parentBlock = stackFrames.peek();
+            FunctionStackFrame otherFuncSameIdentifier = parentBlock.getFunction(funcIdentifier);
+            FunctionStackFrame funcStackFrame = new FunctionStackFrame(stackFrames.peek(),funcIdentifier, lineNumber);
+            stackFrames.push(funcStackFrame);
+            //-----------------------------------------------------------------------
 
             parent.appendChild(identifier);
 
@@ -625,6 +675,19 @@ public class Parser {
             lastTokenIndex = tokenIndex;
 
             Node formalParams = isFormalParams();
+
+            //--------------------------check for conflict name and prams-----------------------
+            if (otherFuncSameIdentifier != null){
+                if (otherFuncSameIdentifier.getFunctionSignature().equals(funcStackFrame.getFunctionSignature())){
+                    errorLogger(otherFuncSameIdentifier.getLineNumber(),TokenClass.TYPE,"Function " + (useLineNumbers?"at line " + lineNumber: " ") + "was " + otherFuncSameIdentifier.getIdentifier() +
+                            otherFuncSameIdentifier.getFunctionSignature() + " is already defined",false);
+                }else{
+                   parentBlock.addLocalFunction(funcStackFrame);
+                }
+            }else{
+                parentBlock.addLocalFunction(funcStackFrame);
+            }
+            //----------------------------------------------------------------------------------
 
             if (formalParams != null){
                 lastTokenIndex = tokenIndex;
@@ -661,6 +724,10 @@ public class Parser {
                 tokenIndex = lastTokenIndex;
             }
 
+            //-----------------------Add type to func stack Frame------------------------------
+            funcStackFrame.setType(type.getTextContent());
+            //---------------------------------------------------------------------------------
+
             parent.appendChild(type);
 
             lastTokenIndex = tokenIndex;
@@ -677,12 +744,39 @@ public class Parser {
 
             parent.appendChild(block);
 
+            //--------------------------Pop function from stack-----------------------------------
+            stackFrames.pop();
+            //------------------------------------------------------------------------------------
+
             return parent;
 
         }
 
         return null;
     }
+
+    private void wasVariableDeclared(String identifier, int lineNumber){
+        //--------------------check if variable was declared------------------------------
+        BlockStackFrame blockFrame = stackFrames.peek();
+        VariableStruct var = null;
+        var = blockFrame.getVariable(identifier);
+        if (var == null){
+            errorLogger(lineNumber, TokenClass.TYPE, "Variable '" + identifier + "' was not declared",false);
+        }
+        //--------------------------------------------------------------------------------
+    }
+
+    private void wasFunctionDeclared(String identifier, String signature, int lineNumber){
+        //--------------------check if variable was declared------------------------------
+        BlockStackFrame blockFrame = stackFrames.peek();
+        FunctionStackFrame func = null;
+        func = blockFrame.getFunction(identifier);
+        if (func == null || !func.getFunctionSignature().equals(signature)){
+            errorLogger(lineNumber, TokenClass.TYPE, "Function '" + identifier + signature + "' was not defined",false);
+        }
+        //--------------------------------------------------------------------------------
+    }
+
 
     private Node isAssignment(){
         Element parent = doc.createElement("Assignment");
@@ -698,6 +792,8 @@ public class Parser {
                 identifier.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                 tokenIndex = lastTokenIndex;
+            }else {
+                wasVariableDeclared(identifier.getTextContent(), lineNumber);
             }
 
             parent.appendChild(identifier);
@@ -774,11 +870,14 @@ public class Parser {
 
             Node identifier = isIdentifier();
 
+            boolean okIdentifier = true;
+
             if (identifier == null){
                 identifier = doc.createElement("Identifier");
                 identifier.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                 tokenIndex = lastTokenIndex;
+                okIdentifier = false;
             }
 
             parent.appendChild(identifier);
@@ -802,6 +901,15 @@ public class Parser {
                 errorLogger(lineNumber, TokenClass.TYPE, "Type");
                 tokenIndex = lastTokenIndex;
             }
+
+            //----------------------Add identifier to appropriate frame---------------------
+            VariableStruct var = new VariableStruct(identifier.getTextContent() + (okIdentifier? "" : identifierGen++), type.getTextContent());
+            BlockStackFrame blockFrame = stackFrames.peek();
+            if (!blockFrame.addLocalVariable(var)){
+                errorLogger(lineNumber,TokenClass.TYPE,"Variable '" + var.getIdentifier() + "' already declared",false);
+            }
+            //------------------------------------------------------------------------------
+
 
             parent.appendChild(type);
 
@@ -848,6 +956,7 @@ public class Parser {
                 }
 
                 parent.appendChild(block);
+
             }
 
             return parent;
@@ -870,6 +979,8 @@ public class Parser {
                 identifier.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                 tokenIndex = lastTokenIndex;
+            }else {
+                wasVariableDeclared(identifier.getTextContent(), lineNumber);
             }
 
             parent.appendChild(identifier);
@@ -894,6 +1005,8 @@ public class Parser {
                 identifier.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                 tokenIndex = lastTokenIndex;
+            }else {
+                wasVariableDeclared(identifier.getTextContent(), lineNumber);
             }
 
             parent.appendChild(identifier);
@@ -1039,31 +1152,30 @@ public class Parser {
     private Node isHaltStatement(){
         Element parent = doc.createElement("HaltStatement");
 
-        if (isKeyword("halt",false)) {
+        if (isKeyword("halt", false)) {
             int lastTokenIndex = tokenIndex;
-            int lineNumber = currentTokenLineNumber();
+            int lineNumber;
 
             Node integerLiteral = isIntegerLiteral();
 
             if (integerLiteral == null){
-                integerLiteral = doc.createElement("IntegerLiteral");
-                integerLiteral.setTextContent("ERROR");
-                errorLogger(lineNumber, TokenClass.INTEGER_LITERAL, "Integer Value");
                 tokenIndex = lastTokenIndex;
+
+                lineNumber = currentTokenLineNumber();
+                Node identifier = isIdentifier();
+
+                if (identifier == null){
+                    identifier = doc.createElement("Identifier");
+                    identifier.setTextContent("ERROR");
+                    errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
+                    tokenIndex = lastTokenIndex;
+                }else {
+                    wasVariableDeclared(identifier.getTextContent(), lineNumber);
+                }
+                parent.appendChild(identifier);
+            }else {
+                parent.appendChild(integerLiteral);
             }
-
-            lineNumber = currentTokenLineNumber();
-            Node identifier = isIdentifier();
-
-            if (identifier == null){
-                identifier = doc.createElement("Identifier");
-                identifier.setTextContent("ERROR");
-                errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
-                tokenIndex = lastTokenIndex;
-            }
-
-            parent.appendChild(integerLiteral);
-            parent.appendChild(identifier);
 
             return parent;
         }
@@ -1077,7 +1189,12 @@ public class Parser {
         int currentIndex = tokenIndex;
 
         Node child = null;
-        if (isSymbol("{",false)) {
+        if (isSymbol("{", false)) {
+            //----------------Add block frame---------------------
+            BlockStackFrame block = new BlockStackFrame(stackFrames.peek());
+            stackFrames.push(block);
+            //----------------------------------------------------
+
             child = isStatement();
             while (child != null) {
                 currentIndex = tokenIndex;
@@ -1090,6 +1207,10 @@ public class Parser {
                 errorLogger(lineNumber,TokenClass.KEY_SYMBOL,"}");
                 tokenIndex = currentIndex;
             }
+
+            //------------------------Pop Block frame---------------
+            stackFrames.pop();
+            //------------------------------------------------------
 
             return  parent;
         }
@@ -1242,6 +1363,8 @@ public class Parser {
     private Node isIdentifier(){
         Element parent = doc.createElement("Identifier");
 
+        int lineNumber = currentTokenLineNumber();
+
         if (!isA(TokenClass.IDENTIFIER)) {
             return null;
         }else{
@@ -1273,19 +1396,148 @@ public class Parser {
     }
 
     private int currentTokenLineNumber(){
+        if (tokenIndex == 0) return 1;
+
         return tokens.get(tokenIndex-1).getLineNumber();
     }
 
     private void errorLogger(int lineNumber, TokenClass clazz, String expected){
-        errorlog.add("Error: Expected: " + expected + "  at line " + lineNumber);
+        errorLogger(lineNumber, clazz, expected, true);
+    }
+
+    private void errorLogger(int lineNumber, TokenClass clazz, String expected,boolean exp){
+        if (useLineNumbers) {
+            errorLog.add("Error: " + (exp ? "Expected: " : "") + expected + "  at line " + lineNumber);
+        }else {
+            errorLog.add("Error: " + (exp ? "Expected: " : "") + expected);
+        }
     }
 
     private void dumpErrors(){
-        if (errorlog.size() > 0){
+        if (errorLog.size() > 0){
             System.out.println("Error log:");
         }
-        for (int loops = 0 ; loops < errorlog.size(); loops ++){
-            System.out.println(errorlog.get(loops));
+        for (int loops = 0 ; loops < errorLog.size(); loops ++){
+            System.out.println(errorLog.get(loops));
         }
+    }
+
+    private TokenClass getExpressionLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getSimpleExpressionLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getTermLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getFactorLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getIdentifierLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getFunctionCallLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getTypeCastLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getSubExpressionLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+    private TokenClass getUnaryLiteralType(Node node){
+        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+
+
+
+        return clazz;
+    }
+
+
+    private boolean isValidType(String typeToBe, TokenClass isType){
+        switch(isType){
+            case BOOLEAN_LITERAL:
+                return  (typeToBe.equals("bool"));
+            case INTEGER_LITERAL:
+                return  (typeToBe.equals("int"));
+            case STRING_LITERAL:
+                return  (typeToBe.endsWith("string") || typeToBe.equals("char"));
+            case CHAR_LITERAL:
+                return  (typeToBe.equals("char"));
+            case REAL_LITERAL:
+                return  (typeToBe.equals("real") || typeToBe.equals("int"));
+            case UNIT_LITERAL:
+                return  (typeToBe.equals("unit"));
+        }
+
+        return false;
+    }
+
+    private String typeTokenToString(TokenClass clazz){
+        switch(clazz){
+            case BOOLEAN_LITERAL:
+                return  "bool";
+            case INTEGER_LITERAL:
+                return  "int";
+            case STRING_LITERAL:
+                return  "string";
+            case CHAR_LITERAL:
+                return  "char";
+            case REAL_LITERAL:
+                return  "real";
+            case UNIT_LITERAL:
+                return  "unit";
+        }
+
+        return "";
     }
 }
