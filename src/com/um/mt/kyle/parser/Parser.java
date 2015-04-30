@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import com.um.mt.kyle.lexer.TokenClass;
+import oracle.jrockit.jfr.StringConstantPool;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Parser {
     private Lexer lexer = null;
@@ -767,7 +769,7 @@ public class Parser {
     }
 
     private void wasFunctionDeclared(String identifier, String signature, int lineNumber){
-        //--------------------check if variable was declared------------------------------
+        //--------------------check if function was declared------------------------------
         BlockStackFrame blockFrame = stackFrames.peek();
         FunctionStackFrame func = null;
         func = blockFrame.getFunction(identifier);
@@ -775,6 +777,18 @@ public class Parser {
             errorLogger(lineNumber, TokenClass.TYPE, "Function '" + identifier + signature + "' was not defined",false);
         }
         //--------------------------------------------------------------------------------
+    }
+
+    private void verifyValidTypeForIdentifier(String identifier, Node expression, int lineNumber){
+        BlockStackFrame blockFrame = stackFrames.peek();
+        VariableStruct var = null;
+        var = blockFrame.getVariable(identifier);
+        if (var != null){
+            String expType = getExpressionLiteralType(expression);
+            if (!var.getType().equals(expType)) {
+                errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting '" + var.getType() + "'", false);
+            }
+        }
     }
 
 
@@ -787,11 +801,14 @@ public class Parser {
 
             Node identifier = isIdentifier();
 
+            boolean okIdentifier = true;
+
             if (identifier == null){
                 identifier = doc.createElement("Identifier");
                 identifier.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                 tokenIndex = lastTokenIndex;
+                okIdentifier = false;
             }else {
                 wasVariableDeclared(identifier.getTextContent(), lineNumber);
             }
@@ -816,6 +833,8 @@ public class Parser {
                 expression.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.EXPRESSION, "Expression");
                 tokenIndex = lastTokenIndex;
+            }else {
+                if (okIdentifier) verifyValidTypeForIdentifier(identifier.getTextContent(), expression,lineNumber);
             }
 
             parent.appendChild(expression);
@@ -870,7 +889,7 @@ public class Parser {
 
             Node identifier = isIdentifier();
 
-            boolean okIdentifier = true;
+            boolean okIdentifier = true, okType = true;
 
             if (identifier == null){
                 identifier = doc.createElement("Identifier");
@@ -900,6 +919,7 @@ public class Parser {
                 type.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.TYPE, "Type");
                 tokenIndex = lastTokenIndex;
+                okType = false;
             }
 
             //----------------------Add identifier to appropriate frame---------------------
@@ -931,6 +951,13 @@ public class Parser {
                 expression.setTextContent("ERROR");
                 errorLogger(lineNumber, TokenClass.EXPRESSION, "Expression");
                 tokenIndex = lastTokenIndex;
+            }else {
+                if (okType) {
+                    String expType = getExpressionLiteralType(expression);
+                    if (!type.getTextContent().equals(expType)) {
+                        errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting '" + type.getTextContent() + "'", false);
+                    }
+                }
             }
 
             parent.appendChild(expression);
@@ -1042,6 +1069,11 @@ public class Parser {
                 expression = doc.createElement("expression");
                 expression.setTextContent("ERROR");
                 errorLogger(lineNumber,TokenClass.EXPRESSION,"Expression");
+            }else {
+                String expType = getExpressionLiteralType(expression);
+                if (!expType.equals("bool")) {
+                    errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting 'bool'", false);
+                }
             }
 
             lastTokenIndex = tokenIndex;
@@ -1062,6 +1094,11 @@ public class Parser {
                 expression = doc.createElement("Statement");
                 expression.setTextContent("ERROR");
                 errorLogger(lineNumber,TokenClass.STATEMENT,"Statement");
+            }else {
+                String expType = getExpressionLiteralType(expression);
+                if (!expType.equals("bool")) {
+                    errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting 'bool'", false);
+                }
             }
 
             parent.appendChild(expression);
@@ -1118,6 +1155,11 @@ public class Parser {
                 expression = doc.createElement("expression");
                 expression.setTextContent("ERROR");
                 errorLogger(lineNumber,TokenClass.EXPRESSION,"Expression");
+            }else {
+                String expType = getExpressionLiteralType(expression);
+                if (!expType.equals("bool")) {
+                    errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting 'bool'", false);
+                }
             }
 
             lastTokenIndex = tokenIndex;
@@ -1422,84 +1464,156 @@ public class Parser {
         }
     }
 
-    private TokenClass getExpressionLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+    private String getExpressionLiteralType(Node node){
+        NodeList children = node.getChildNodes();
 
+        String type =  getSimpleExpressionLiteralType(children.item(0));
 
+        for (int loops = 2 ; loops < children.getLength(); loops += 2){
+            String nextType = getSimpleExpressionLiteralType(children.item(loops));
+            if (type.equals("int")){
+                if (nextType.equals("real") || nextType.equals("int")) type = "bool";
+                else type = "ERROR";
+            }else if (type.equals("real")){
+                if (nextType.equals("real") || nextType.equals("int")) type = "bool";
+                else type = "ERROR";
+            }else if (type.equals("unit")){
+                type = "ERROR";
+            }else if (type.equals("bool")){
+                if (!nextType.equals("bool")) type = "ERROR";
+            }else if (type.equals("char")){
+                if (nextType.equals("char")) type = "bool";
+                else type = "ERROR";
+            }else if (type.equals("string")){
+                if (nextType.equals("int")) type = "bool";
+                else type = "ERROR";
+            }
+        }
 
-        return clazz;
+        return type ;
     }
 
-    private TokenClass getSimpleExpressionLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+    private String getSimpleExpressionLiteralType(Node node){
+        NodeList children = node.getChildNodes();
 
+        String type =  getTermLiteralType(children.item(0));
 
+        for (int loops = 2 ; loops < children.getLength(); loops += 2){
+            String nextType = getTermLiteralType(children.item(loops));
+            if (type.equals("int")){
+                if (nextType.equals("real")) type = "real";
+                else if (nextType.equals("int")) type = "int";
+                else type = "ERROR";
+            }else if (type.equals("real")){
+                if (nextType.equals("real") || nextType.equals("int")) type = "real";
+                else type = "ERROR";
+            }else if (type.equals("unit")){
+                if (!nextType.equals("unit")) type = "ERROR";
+            }else if (type.equals("bool")){
+                if (!nextType.equals("bool")) type = "ERROR";
+            }else if (type.equals("char")){
+                if (nextType.equals("char") || nextType.equals("string")) type = "string";
+                else type = "ERROR";
+            }else if (type.equals("string")){
+                if (nextType.equals("char") || nextType.equals("int")) type = "string";
+                else type = "ERROR";
+            }
+        }
 
-        return clazz;
+        return type ;
     }
 
-    private TokenClass getTermLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+    private String getTermLiteralType(Node node){
+        NodeList children = node.getChildNodes();
 
+        String type =  getFactorLiteralType(children.item(0));
 
+        for (int loops = 2 ; loops < children.getLength(); loops += 2){
+            String nextType = getFactorLiteralType(children.item(loops));
+            if (type.equals("int")){
+                if (nextType.equals("real")) type = "real";
+                else if (nextType.equals("int")) type = "int";
+                else type = "ERROR";
+            }else if (type.equals("real")){
+                if (nextType.equals("real") || nextType.equals("int")) type = "real";
+                else type = "ERROR";
+            }else if (type.equals("unit")){
+                if (!nextType.equals("unit")) type = "ERROR";
+            }else if (type.equals("bool")){
+                if (!nextType.equals("bool")) type = "ERROR";
+            }else if (type.equals("char")){
+                type = "ERROR";
+            }else if (type.equals("string")){
+               type = "ERROR";
+            }
+        }
 
-        return clazz;
+        return type ;
     }
 
-    private TokenClass getFactorLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+    private String getFactorLiteralType(Node node){
+        Node child = node.getFirstChild();
 
+        if (child.getNodeName().equals("Literal")){
+            return getLiteralType(child);
+        }else if (child.getNodeName().equals("Identifier")){
+            return getIdentifierLiteralType(child);
+        }else if (child.getNodeName().equals("FunctionCall")){
+            return getFunctionCallLiteralType(child);
+        }else if (child.getNodeName().equals("TypeCast")){
+            return getTypeCastLiteralType(child);
+        }else if (child.getNodeName().equals("SubExpression")){
+            return getSubExpressionLiteralType(child);
+        }else if (child.getNodeName().equals("Unary")){
+            return getUnaryLiteralType(child);
+        }
 
-
-        return clazz;
+        return "Unknown";
     }
 
-    private TokenClass getLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+    private String getLiteralType(Node node){
+        Node child = node.getFirstChild();
 
+        if (child.getNodeName().equals("RealLiteral")){
+            return "real";
+        }else if (child.getNodeName().equals("BooleanLiteral")){
+            return "bool";
+        }else if (child.getNodeName().equals("CharLiteral")){
+            return "char";
+        }else if (child.getNodeName().equals("UnitLiteral")){
+            return "unit";
+        }else if (child.getNodeName().equals("IntegerLiteral")){
+            return "int";
+        }else if (child.getNodeName().equals("StringLiteral")){
+            return "string";
+        }
 
-
-        return clazz;
+        return "Unknown";
     }
 
-    private TokenClass getIdentifierLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
-
-
-
-        return clazz;
+    private String getIdentifierLiteralType(Node node){
+        return stackFrames.peek().getVariable(node.getTextContent()).getType();
     }
 
-    private TokenClass getFunctionCallLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
-
-
-
-        return clazz;
+    private String getFunctionCallLiteralType(Node node){
+        Node identifier = node.getFirstChild();
+        return stackFrames.peek().getLocalFunction(identifier.getTextContent()).getType();
     }
 
-    private TokenClass getTypeCastLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
-
-
-
-        return clazz;
+    private String getTypeCastLiteralType(Node node){
+        Node type = node.getFirstChild();
+        return type.getTextContent();
     }
 
-    private TokenClass getSubExpressionLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
+    private String getSubExpressionLiteralType(Node node){
+        Node expression = node.getFirstChild();
 
-
-
-        return clazz;
+        return getExpressionLiteralType(expression);
     }
 
-    private TokenClass getUnaryLiteralType(Node node){
-        TokenClass clazz = TokenClass.BOOLEAN_LITERAL;
-
-
-
-        return clazz;
+    private String getUnaryLiteralType(Node node){
+        Node expression = node.getChildNodes().item(1);
+        return getExpressionLiteralType(expression);
     }
 
 
