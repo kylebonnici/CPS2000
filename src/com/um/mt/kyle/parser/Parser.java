@@ -311,6 +311,13 @@ public class Parser {
                     expression.setTextContent("ERROR");
                     errorLogger(lineNumber, TokenClass.EXPRESSION, "Expression");
                     tokenIndex = lastTokenIndex;
+                }else{
+                    String expType = getExpressionLiteralType(expression);
+                    if (type.getTextContent().equals(expType)){
+                        errorLogger(lineNumber, TokenClass.TYPE, "Warning -- Redundant type cast from '" + expType + "' to '" + type.getTextContent() + "'", false);
+                    }else if (!isValidCast(expType,type.getTextContent())){
+                        errorLogger(lineNumber, TokenClass.TYPE, "Cannot cast from '" + expType + "' to '" + type.getTextContent() + "'", false);
+                    }
                 }
 
                 parent.appendChild(expression);
@@ -320,6 +327,18 @@ public class Parser {
         }
 
         return null;
+    }
+
+    private boolean isValidCast(String from, String to ){
+        if (from.equals("int")){
+            if (to.equals("int") || to.equals("real") || to.equals("char")) return true;
+        }else if (from.equals("real")){
+            if (to.equals("int") || to.equals("real")) return true;
+        }else if (from.equals("char")){
+            if (to.equals("int") || to.equals("real" ) || to.equals("string") || to.equals("char")) return true;
+        }
+
+        return false;
     }
 
     private Node isActualParams(){
@@ -369,7 +388,6 @@ public class Parser {
         if (identifier != null){
             if (isSymbol("(",false)) {
                 parent.appendChild(identifier);
-                //wasFunctionDeclared(identifier.getTextContent(),"",currentTokenLineNumber());
 
                 int lastTokenIndex = tokenIndex;
 
@@ -378,6 +396,9 @@ public class Parser {
                 if (actualParams != null){
                     lastTokenIndex = tokenIndex;
                     parent.appendChild(actualParams);
+                    wasFunctionDeclared(identifier.getTextContent(),getSignatureFromActualParams(actualParams), currentTokenLineNumber());
+                }else{
+                    wasFunctionDeclared(identifier.getTextContent(),"()",currentTokenLineNumber());
                 }
 
                 tokenIndex = lastTokenIndex;
@@ -394,6 +415,23 @@ public class Parser {
         }
 
         return null;
+    }
+
+    private String getSignatureFromActualParams(Node actualParams){
+        StringBuilder signature = new StringBuilder("(");
+
+        NodeList expressions = actualParams.getChildNodes();
+
+        for (int loops=0; loops < expressions.getLength(); loops ++){
+            if (loops != 0){
+                signature.append(",");
+            }
+            signature.append(getExpressionLiteralType(expressions.item(loops)));
+        }
+
+        signature.append(")");
+
+        return signature.toString();
     }
 
 
@@ -757,14 +795,16 @@ public class Parser {
         return null;
     }
 
-    private void wasVariableDeclared(String identifier, int lineNumber){
+    private boolean wasVariableDeclared(String identifier, int lineNumber){
         //--------------------check if variable was declared------------------------------
         BlockStackFrame blockFrame = stackFrames.peek();
         VariableStruct var = null;
         var = blockFrame.getVariable(identifier);
         if (var == null){
             errorLogger(lineNumber, TokenClass.TYPE, "Variable '" + identifier + "' was not declared",false);
+            return false;
         }
+        return true;
         //--------------------------------------------------------------------------------
     }
 
@@ -775,6 +815,17 @@ public class Parser {
         func = blockFrame.getFunction(identifier);
         if (func == null || !func.getFunctionSignature().equals(signature)){
             errorLogger(lineNumber, TokenClass.TYPE, "Function '" + identifier + signature + "' was not defined",false);
+        }
+        //--------------------------------------------------------------------------------
+    }
+
+    private void wasFunctionDeclared(String identifier, int lineNumber){
+        //--------------------check if function was declared------------------------------
+        BlockStackFrame blockFrame = stackFrames.peek();
+        FunctionStackFrame func = null;
+        func = blockFrame.getFunction(identifier);
+        if (func == null){
+            errorLogger(lineNumber, TokenClass.TYPE, "Function '" + identifier + "' was not defined",false);
         }
         //--------------------------------------------------------------------------------
     }
@@ -1212,7 +1263,12 @@ public class Parser {
                     errorLogger(lineNumber, TokenClass.IDENTIFIER, "Identifier");
                     tokenIndex = lastTokenIndex;
                 }else {
-                    wasVariableDeclared(identifier.getTextContent(), lineNumber);
+                    if (wasVariableDeclared(identifier.getTextContent(), lineNumber)){
+                        VariableStruct var = stackFrames.peek().getVariable(identifier.getTextContent());
+                        if (!var.getType().equals("int")){
+                            errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + var.getType() + "' expecting 'int'", false);
+                        }
+                    }
                 }
                 parent.appendChild(identifier);
             }else {

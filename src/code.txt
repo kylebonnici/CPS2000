@@ -15,4 +15,4 @@ function pow( x : real, n : int ) : real
     y;
 }
 
-pow(3.0,1);
+pow(3.0,1, "test");
