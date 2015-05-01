@@ -15,4 +15,6 @@ function pow( x : real, n : int ) : real
     y;
 }
 
-pow(3.0,1, "test");
+let f : real =  pow(3.0,1);
+
++(5+3);

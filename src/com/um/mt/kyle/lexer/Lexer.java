@@ -363,13 +363,19 @@ public class Lexer {
 
         StringBuilder out = new StringBuilder();
 
-        int c = (char)bufferToRead.read();
-
-        while (c != EOF && isWhiteSpace((char)c)){
-            c = (char)bufferToRead.read();
-        }
+        int c = dumpWhiteSpace();
 
         while (c != EOF){
+
+            if (c == '/' && !openQuotes){
+                c = bufferToRead.read();
+                if (c == '/'){
+                    c = dumpUntilNewLine();
+                }else{
+                    out.append("/");
+                }
+            }
+
 
             if ((!openQuotes && c == '\'' || c == '"') || (openQuotes && c == quote)){
                 quote = (char)c;
@@ -384,12 +390,7 @@ public class Lexer {
                 tokens.add(new Token(TokenClass.ERROR,"Missing close quotes with string " + out.toString(), lineNumber));
                 openQuotes = false;
 
-                c = (char)bufferToRead.read();
-
-                while (c != EOF && isWhiteSpace((char)c)){
-                    c = (char)bufferToRead.read();
-                }
-
+                c = dumpWhiteSpace();
                 out.setLength(0);
 
                 if (c == EOF){
@@ -409,6 +410,29 @@ public class Lexer {
 
        return  out;
     }
+
+    private int dumpWhiteSpace() throws IOException{
+        int c = (char)bufferToRead.read();
+
+        while (c != EOF && isWhiteSpace((char)c)){
+            c = (char)bufferToRead.read();
+        }
+
+        return c;
+    }
+
+    //comment system
+    private int dumpUntilNewLine() throws IOException{
+        int c = (char)bufferToRead.read();
+        while (c != EOF && !isNewLine((char)c)){
+            c = (char)bufferToRead.read();
+        }
+
+        readerLineNumber++;
+
+        return dumpWhiteSpace();
+    }
+
 
     private boolean isNewLine(char c){
         return (c == '\n');

@@ -239,8 +239,10 @@ public class Parser {
 
         Token token = tokens.get(tokenIndex++);
 
-        if (token.isTokenClazz(TokenClass.KEY_SYMBOL) || token.isTokenClazz(TokenClass.KEYWORD)) {
+        if (token.isTokenClazz(TokenClass.ADDITIVE_OP) || token.isTokenClazz(TokenClass.KEYWORD)) {
             if (token.getLexeme().toString().matches("[+|-|not]")) {
+
+                parent.setTextContent(token.getLexeme().toString());
 
                 int lastTokenIndex = tokenIndex;
                 int lineNumber = currentTokenLineNumber();
@@ -252,6 +254,18 @@ public class Parser {
                     expression.setTextContent("ERROR");
                     errorLogger(lineNumber, TokenClass.EXPRESSION, "Expression");
                     tokenIndex = lastTokenIndex;
+                }else {
+                    String expType = getTermLiteralType(expression);
+                    String op = token.getLexeme().toString();
+
+                    if (!expType.equals("ERROR") && !expType.equals("Unknown")){
+                        if (expType.equals("char") || expType.equals("string") || expType.equals("unit")){
+                            errorLogger(lineNumber,TokenClass.TYPE,"Type mismatch '" + op + "' can not be used with type '" +
+                                    expType + "'", false);
+                        }else if ( (op.equals("not") && !expType.equals("bool")) || (!op.equals("not") && expType.equals("bool")) ) {
+                            errorLogger(lineNumber,TokenClass.TYPE,"Type mismatch '" + op + "' can not be used with type '" + expType + "'", false);
+                        }
+                    }
                 }
 
                 parent.appendChild(expression);
@@ -266,7 +280,7 @@ public class Parser {
     private Node isSubExpression(){
         Element parent = doc.createElement("SubExpression");
 
-        if (isSymbol("(",false)){
+        if (isSymbol("(", false)){
             Node expression = isExpression();
             if (expression != null){
                 parent.appendChild(expression);
@@ -289,10 +303,10 @@ public class Parser {
     private Node isTypeCast(){
         Element parent = doc.createElement("TypeCast");
 
-        if (isSymbol("(",false)){
+        if (isSymbol("(", false)){
             Node type = isType();
             if (type != null){
-
+                parent.appendChild(type);
                 int lastTokenIndex = tokenIndex;
                 int lineNumber = currentTokenLineNumber();
 
@@ -336,6 +350,8 @@ public class Parser {
             if (to.equals("int") || to.equals("real")) return true;
         }else if (from.equals("char")){
             if (to.equals("int") || to.equals("real" ) || to.equals("string") || to.equals("char")) return true;
+        }else if (from.equals("Unknown")){
+            return true;
         }
 
         return false;
@@ -481,6 +497,11 @@ public class Parser {
 
         if (child == null){
             tokenIndex = lastTokenIndex;
+            child = isTypeCast();
+        }
+
+        if (child == null){
+            tokenIndex = lastTokenIndex;
             child = isFunctionCall();
         }
 
@@ -491,11 +512,6 @@ public class Parser {
             if (child != null){
                 wasVariableDeclared(child.getTextContent(), lineNumber);
             }
-        }
-
-        if (child == null){
-            tokenIndex = lastTokenIndex;
-            child = isTypeCast();
         }
 
         if (child == null){
@@ -540,6 +556,14 @@ public class Parser {
                     factor.setTextContent("ERROR");
                     errorLogger(lineNumber, TokenClass.FACTOR, "Factor");
                     tokenIndex = lastTokenIndex;
+                }else {
+                    String startExpType = getFactorLiteralType(startFactor);
+                    String expType = getFactorLiteralType(factor);
+                    String op = parent.getChildNodes().item(1).getTextContent();
+
+                    if (!validTermOperation(startExpType, expType, op)){
+                        errorLogger(lineNumber, TokenClass.TYPE, "Type mismatch", false);
+                    }
                 }
 
                 parent.appendChild(factor);
@@ -575,6 +599,14 @@ public class Parser {
                     term.setTextContent("ERROR");
                     errorLogger(lineNumber, TokenClass.TERM, "Term");
                     tokenIndex = lastTokenIndex;
+                }else {
+                    String startExpType = getTermLiteralType(startTerm);
+                    String expType = getTermLiteralType(term);
+                    String op = parent.getChildNodes().item(1).getTextContent();
+
+                    if (!validSimpleExpressionOperation(startExpType, expType, op)){
+                        errorLogger(lineNumber,TokenClass.TYPE,"Type mismatch", false);
+                    }
                 }
 
                 parent.appendChild(term);
@@ -697,7 +729,6 @@ public class Parser {
             //-----------------------Create stack Frame------------------------------
             String funcIdentifier = identifier.getTextContent() + (okIdentifier? "" : identifierGen++);
             BlockStackFrame parentBlock = stackFrames.peek();
-            FunctionStackFrame otherFuncSameIdentifier = parentBlock.getFunction(funcIdentifier);
             FunctionStackFrame funcStackFrame = new FunctionStackFrame(stackFrames.peek(),funcIdentifier, lineNumber);
             stackFrames.push(funcStackFrame);
             //-----------------------------------------------------------------------
@@ -717,15 +748,16 @@ public class Parser {
             Node formalParams = isFormalParams();
 
             //--------------------------check for conflict name and prams-----------------------
+            stackFrames.pop();
+            FunctionStackFrame otherFuncSameIdentifier = stackFrames.peek().getFunction(funcStackFrame);
+
             if (otherFuncSameIdentifier != null){
-                if (otherFuncSameIdentifier.getFunctionSignature().equals(funcStackFrame.getFunctionSignature())){
-                    errorLogger(otherFuncSameIdentifier.getLineNumber(),TokenClass.TYPE,"Function " + (useLineNumbers?"at line " + lineNumber: " ") + "was " + otherFuncSameIdentifier.getIdentifier() +
-                            otherFuncSameIdentifier.getFunctionSignature() + " is already defined",false);
-                }else{
-                   parentBlock.addLocalFunction(funcStackFrame);
-                }
+                errorLogger(otherFuncSameIdentifier.getLineNumber(),TokenClass.TYPE,"Function " + (useLineNumbers?"at line " + lineNumber: " ") + "was "
+                        + otherFuncSameIdentifier.getIdentifier() + otherFuncSameIdentifier.getFunctionSignature() + " is already defined",false);
+
             }else{
                 parentBlock.addLocalFunction(funcStackFrame);
+                stackFrames.push(funcStackFrame);
             }
             //----------------------------------------------------------------------------------
 
@@ -812,20 +844,9 @@ public class Parser {
         //--------------------check if function was declared------------------------------
         BlockStackFrame blockFrame = stackFrames.peek();
         FunctionStackFrame func = null;
-        func = blockFrame.getFunction(identifier);
+        func = blockFrame.getFunction(identifier, signature);
         if (func == null || !func.getFunctionSignature().equals(signature)){
             errorLogger(lineNumber, TokenClass.TYPE, "Function '" + identifier + signature + "' was not defined",false);
-        }
-        //--------------------------------------------------------------------------------
-    }
-
-    private void wasFunctionDeclared(String identifier, int lineNumber){
-        //--------------------check if function was declared------------------------------
-        BlockStackFrame blockFrame = stackFrames.peek();
-        FunctionStackFrame func = null;
-        func = blockFrame.getFunction(identifier);
-        if (func == null){
-            errorLogger(lineNumber, TokenClass.TYPE, "Function '" + identifier + "' was not defined",false);
         }
         //--------------------------------------------------------------------------------
     }
@@ -836,7 +857,7 @@ public class Parser {
         var = blockFrame.getVariable(identifier);
         if (var != null){
             String expType = getExpressionLiteralType(expression);
-            if (!var.getType().equals(expType)) {
+            if (!var.getType().equals(expType) && !expType.equals("ERROR") && !expType.equals("Unknown")) {
                 errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting '" + var.getType() + "'", false);
             }
         }
@@ -918,6 +939,14 @@ public class Parser {
                     simpleExpression.setTextContent("ERROR");
                     errorLogger(lineNumber, TokenClass.SIMPLE_EXPRESSION, "Simple Expression");
                     tokenIndex = lastTokenIndex;
+                }else {
+                    String startExpType = getSimpleExpressionLiteralType(startSimpleExpression);
+                    String expType = getSimpleExpressionLiteralType(simpleExpression);
+                    String op = parent.getChildNodes().item(1).getTextContent();
+
+                    if (!validExpressionOperation(startExpType, expType, op)){
+                        errorLogger(lineNumber,TokenClass.TYPE,"Type mismatch", false);
+                    }
                 }
 
                 parent.appendChild(simpleExpression);
@@ -929,6 +958,34 @@ public class Parser {
         }
 
         return null;
+    }
+
+    private boolean validExpressionOperation(String type1 , String type2, String op){
+        if (type1.equals("Unknown") ||type2.equals("Unknown") ) return true;
+
+        boolean hasInt = type1.equals("int") || type2.equals("int");
+        boolean hasReal = type1.equals("real") || type2.equals("real");
+        //boolean hasChar = type1.equals("char") || type2.equals("char");
+        //boolean hasUnit = type1.equals("unit") || type2.equals("unit");
+        //boolean hasString = type1.equals("string") || type2.equals("string");
+        //boolean hasBool = type1.equals("bool") || type2.equals("bool");
+
+        boolean bothInt = type1.equals("int") && type2.equals("int");
+        boolean bothReal = type1.equals("real") && type2.equals("real");
+        boolean bothChar = type1.equals("char") && type2.equals("char");
+        //boolean bothUnit = type1.equals("unit") && type2.equals("unit");
+        boolean bothString = type1.equals("string") && type2.equals("string");
+        boolean bothBool = type1.equals("bool") && type2.equals("bool");
+
+        if (bothBool){
+            return true;
+        }else if ((hasInt && hasReal) || bothInt || bothReal){
+            return true;
+        }else if (bothChar || bothString){
+            return true;
+        }
+
+        return false;
     }
 
     private Node isVariableDecl(){
@@ -1005,7 +1062,7 @@ public class Parser {
             }else {
                 if (okType) {
                     String expType = getExpressionLiteralType(expression);
-                    if (!type.getTextContent().equals(expType)) {
+                    if (!type.getTextContent().equals(expType)  && !expType.equals("ERROR") && !expType.equals("Unknown")) {
                         errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting '" + type.getTextContent() + "'", false);
                     }
                 }
@@ -1122,7 +1179,7 @@ public class Parser {
                 errorLogger(lineNumber,TokenClass.EXPRESSION,"Expression");
             }else {
                 String expType = getExpressionLiteralType(expression);
-                if (!expType.equals("bool")) {
+                if (!expType.equals("bool")  && !expType.equals("ERROR") && !expType.equals("Unknown")) {
                     errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting 'bool'", false);
                 }
             }
@@ -1147,7 +1204,7 @@ public class Parser {
                 errorLogger(lineNumber,TokenClass.STATEMENT,"Statement");
             }else {
                 String expType = getExpressionLiteralType(expression);
-                if (!expType.equals("bool")) {
+                if (!expType.equals("bool") && !expType.equals("ERROR") && !expType.equals("Unknown")) {
                     errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting 'bool'", false);
                 }
             }
@@ -1208,7 +1265,7 @@ public class Parser {
                 errorLogger(lineNumber,TokenClass.EXPRESSION,"Expression");
             }else {
                 String expType = getExpressionLiteralType(expression);
-                if (!expType.equals("bool")) {
+                if (!expType.equals("bool") && !expType.equals("ERROR") && !expType.equals("Unknown")) {
                     errorLogger(lineNumber, TokenClass.TYPE, "Wrong type. Found '" + expType + "' expecting 'bool'", false);
                 }
             }
@@ -1292,7 +1349,7 @@ public class Parser {
             BlockStackFrame block = new BlockStackFrame(stackFrames.peek());
             stackFrames.push(block);
             //----------------------------------------------------
-
+            currentIndex = tokenIndex;
             child = isStatement();
             while (child != null) {
                 currentIndex = tokenIndex;
@@ -1319,10 +1376,12 @@ public class Parser {
 
     private boolean isSymbol(String symbol, boolean persist){
         if (!isAWith(TokenClass.KEY_SYMBOL, symbol)){
+            int lineNumber = currentTokenLineNumber();
             if (!isDone() && persist){
                 if (!isAWith(TokenClass.KEY_SYMBOL, symbol)) {
                     return false;
                 }else {
+                    errorLogger(lineNumber,TokenClass.KEY_SYMBOL,"Syntax error before '" + symbol + "'",false);
                     return true;
                 }
             }else{
@@ -1335,10 +1394,12 @@ public class Parser {
 
     private boolean isKeyword(String keyword, boolean persist){
         if (!isAWith(TokenClass.KEYWORD, keyword)){
+            int lineNumber = currentTokenLineNumber();
             if (!isDone() && persist){
                 if (!isAWith(TokenClass.KEYWORD, keyword)) {
                     return false;
                 }else {
+                    errorLogger(lineNumber,TokenClass.KEY_SYMBOL,"Syntax error before '" + keyword + "'",false);
                     return true;
                 }
             }else{
@@ -1571,12 +1632,44 @@ public class Parser {
                 if (nextType.equals("char") || nextType.equals("string")) type = "string";
                 else type = "ERROR";
             }else if (type.equals("string")){
-                if (nextType.equals("char") || nextType.equals("int")) type = "string";
+                if (nextType.equals("char") || nextType.equals("string")) type = "string";
                 else type = "ERROR";
             }
         }
 
         return type ;
+    }
+
+    private boolean validSimpleExpressionOperation(String type1 , String type2, String op){
+        if (type1.equals("Unknown") ||type2.equals("Unknown") ) return true;
+
+        boolean hasInt = type1.equals("int") || type2.equals("int");
+        boolean hasReal = type1.equals("real") || type2.equals("real");
+        boolean hasChar = type1.equals("char") || type2.equals("char");
+        //boolean hasUnit = type1.equals("unit") || type2.equals("unit");
+        boolean hasString = type1.equals("string") || type2.equals("string");
+        //boolean hasBool = type1.equals("bool") || type2.equals("bool");
+
+        boolean bothInt = type1.equals("int") && type2.equals("int");
+        boolean bothReal = type1.equals("real") && type2.equals("real");
+        boolean bothChar = type1.equals("char") && type2.equals("char");
+        //boolean bothUnit = type1.equals("unit") && type2.equals("unit");
+        boolean bothString = type1.equals("string") && type2.equals("string");
+        boolean bothBool = type1.equals("bool") && type2.equals("bool");
+
+        boolean boolOp = op.equals("or");
+        boolean numericOp = op.equals("-") || op.equals("+");
+        boolean stringOp = op.equals("+");
+
+        if (bothBool && boolOp){
+            return true;
+        }else if (numericOp && ((hasInt && hasReal) || bothInt || bothReal) ){
+            return true;
+        }else if (stringOp && ((hasChar && hasString) || bothChar || bothString) ){
+            return true;
+        }
+
+        return false;
     }
 
     private String getTermLiteralType(Node node){
@@ -1605,6 +1698,36 @@ public class Parser {
         }
 
         return type ;
+    }
+
+    private boolean validTermOperation(String type1 , String type2, String op){
+
+        if (type1.equals("Unknown") ||type2.equals("Unknown") ) return true;
+
+        boolean hasInt = type1.equals("int") || type2.equals("int");
+        boolean hasReal = type1.equals("real") || type2.equals("real");
+        //boolean hasChar = type1.equals("char") || type2.equals("char");
+        //boolean hasUnit = type1.equals("unit") || type2.equals("unit");
+        //boolean hasString = type1.equals("string") || type2.equals("string");
+        //boolean hasBool = type1.equals("bool") || type2.equals("bool");
+
+        boolean bothInt = type1.equals("int") && type2.equals("int");
+        boolean bothReal = type1.equals("real") && type2.equals("real");
+        //boolean bothChar = type1.equals("char") && type2.equals("char");
+        //boolean bothUnit = type1.equals("unit") && type2.equals("unit");
+        //boolean bothString = type1.equals("string") && type2.equals("string");
+        boolean bothBool = type1.equals("bool") && type2.equals("bool");
+
+        boolean boolOp = op.equals("and");
+        boolean numericOp = op.equals("*") || op.equals("/");
+
+        if (bothBool && boolOp){
+            return true;
+        }else if (numericOp && ((hasInt && hasReal) || bothInt || bothReal) ){
+            return true;
+        }
+
+        return false;
     }
 
     private String getFactorLiteralType(Node node){
@@ -1648,12 +1771,27 @@ public class Parser {
     }
 
     private String getIdentifierLiteralType(Node node){
-        return stackFrames.peek().getVariable(node.getTextContent()).getType();
+        VariableStruct var = stackFrames.peek().getVariable(node.getTextContent());
+
+        if (var == null){
+            return "Unknown";
+        }
+        return var.getType();
     }
 
     private String getFunctionCallLiteralType(Node node){
         Node identifier = node.getFirstChild();
-        return stackFrames.peek().getLocalFunction(identifier.getTextContent()).getType();
+        Node actualPrams = node.getChildNodes().item(1);
+
+        String signature = getSignatureFromActualParams(actualPrams);
+
+        FunctionStackFrame func = stackFrames.peek().getLocalFunction(identifier.getTextContent(), signature);
+
+        if (func == null){
+            return "Unknown";
+        }else {
+            return func.getType();
+        }
     }
 
     private String getTypeCastLiteralType(Node node){

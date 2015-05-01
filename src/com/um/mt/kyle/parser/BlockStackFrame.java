@@ -18,22 +18,23 @@ public class BlockStackFrame  {
 
     //------------------------Functions-----------------------------
     public final boolean addLocalFunction(FunctionStackFrame func){
-        if (!hasLocalFunction(func.getIdentifier())){
+        if (!hasLocalFunction(func.getIdentifier(),func.getFunctionSignature())){
             localFunctions.add(func);
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
-    public final boolean hasLocalFunction(String identifier){
-        return getLocalVariable(identifier) != null;
+    public final boolean hasLocalFunction(String identifier, String signature){
+        return getLocalFunction(identifier,signature) != null;
     }
 
 
-    public FunctionStackFrame getLocalFunction(String identifier){
+    public FunctionStackFrame getLocalFunction(String identifier, String signature){
         for (int loops = 0 ; loops < localFunctions.size(); loops ++){
-            if (localFunctions.get(loops).getIdentifier().equals(identifier)){
+            FunctionStackFrame funcIterator = localFunctions.get(loops);
+            if (funcIterator.getIdentifier().equals(identifier) && funcIterator.getFunctionSignature().equals(signature)){
                 return localFunctions.get(loops);
             }
         }
@@ -41,21 +42,27 @@ public class BlockStackFrame  {
         return null;
     }
 
-    public final FunctionStackFrame getFunction(String identifier){
-        FunctionStackFrame func = getLocalFunction(identifier);
+    public FunctionStackFrame getFunction(FunctionStackFrame func){
+        return getFunction(func.getIdentifier(),func.getFunctionSignature());
+    }
 
-        if (func == null && parentFrame !=null){
-            parentFrame.getFunction(identifier);
+    public final FunctionStackFrame getFunction(String identifier, String signature){
+        FunctionStackFrame localFunc = getLocalFunction(identifier, signature);
+
+        if (localFunc == null && parentFrame !=null){
+            parentFrame.getFunction(identifier,signature);
         }
 
-        return func;
+        return localFunc;
     }
 
-    public final boolean hasFunction(String identifier){
-        return getFunction(identifier) != null;
+    public final boolean hasFunction(String identifier, String signature){
+        return getFunction(identifier,signature) != null;
     }
 
-
+    public final boolean hasFunction(FunctionStackFrame func){
+        return hasFunction(func.getIdentifier(),func.getFunctionSignature());
+    }
 
     //----------------------Variables--------------------------
     public final boolean addLocalVariable(VariableStruct var){
