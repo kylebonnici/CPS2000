@@ -1034,7 +1034,7 @@ public class Parser {
             VariableStruct var = new VariableStruct(identifier.getTextContent() + (okIdentifier? "" : identifierGen++), type.getTextContent());
             BlockStackFrame blockFrame = stackFrames.peek();
             if (!blockFrame.addLocalVariable(var)){
-                errorLogger(lineNumber,TokenClass.TYPE,"Variable '" + var.getIdentifier() + "' already declared",false);
+                errorLogger(lineNumber,TokenClass.TYPE,"Variable '" + var.getIdentifier() + "' is already declared",false);
             }
             //------------------------------------------------------------------------------
 

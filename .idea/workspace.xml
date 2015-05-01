@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97149cb7-5cd1-47b1-94fd-40e8c7cabf42" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/BlockStackFrame.java" afterPath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/BlockStackFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java" afterPath="$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/Parser.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/Parser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java" afterPath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/code.txt" afterPath="$PROJECT_DIR$/src/code.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/out.xml" afterPath="$PROJECT_DIR$/src/out.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/out.xml" afterPath="$PROJECT_DIR$/out/production/CPS2000/out.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CPS2000.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.870968">
-              <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.903226">
+              <caret line="1036" column="97" selection-start-line="1036" selection-start-column="97" selection-end-line="1036" selection-end-column="97" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1787#1788#0" expanded="true" />
@@ -113,8 +112,8 @@
       <file leaf-file-name="code.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/code.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49053356">
-              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.103270225">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -721,14 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bnf.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -744,10 +735,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/bnf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.333333">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.870968">
-          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.903226">
+          <caret line="1036" column="97" selection-start-line="1036" selection-start-column="97" selection-end-line="1036" selection-end-column="97" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1787#1788#0" expanded="true" />
@@ -758,8 +757,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/code.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49053356">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.103270225">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
           <folding />
         </state>
       </provider>
