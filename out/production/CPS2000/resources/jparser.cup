@@ -1,0 +1,207 @@
+package mt.edu.um.cs.cps2000.parser;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.NodeList;
+
+class JParser;
+
+parser code {:
+  public boolean useLineNumber = false;
+  private Document doc;
+
+  public void setDoc(Document doc) {
+    this.doc = doc;
+  }
+
+  private Node generateNode(String type, String textContent){
+    Node node = doc.createElement(type);
+    node.setTextContent(textContent);
+    return node;
+  }
+
+:};
+
+
+terminal String        TYPE , IDENTIFIER;
+terminal Boolean       BOOLEAN_LITERAL;
+terminal Integer       INTEGER_LITERAL;
+terminal Double        REAL_LITERAL;
+terminal String        CHAR_LITERAL;
+terminal String        STRING_LITERAL;
+terminal String        UNIT_LITERAL;
+terminal String        RELATIONAL_OP;
+terminal               PLUS, MINUS, MULTIPLICATION, DIVISION;
+terminal               SEMICOLON, COLON, COMMA, CURLY_BRACE_OPEN, CURLY_BRACE_CLOSE, BRACE_OPEN, BRACE_CLOSE , TO;
+terminal               HALT, WHILE, READ, WRITE, FUNCTION, SET, NOT, OR, AND, LET, EQ, IN, IF, ELSE;
+
+
+non terminal Node      MultiplicativeOp, AdditiveOp, sxl, block, statement, literal;
+non terminal Node      functionDecl, assignment, expression, variableDecl, readStatement, writeStatement, ifStatement, elseStatement, whileStatement, haltStatement;
+non terminal Node      simpleExpression, term, factor, functionCall, typeCast,subExpression,unary,formalParams, formalParam, actualParams;
+
+precedence left        ELSE;
+precedence left        PLUS, MINUS, OR;
+precedence left        MULTIPLICATION, DIVISION, AND;
+precedence left        RELATIONAL_OP;
+precedence right       statement;
+
+sxl ::= statement:s sxl:sx {: RESULT = sx; RESULT.insertBefore(s,RESULT.getFirstChild()); :}
+        | statement:s {: RESULT = doc.createElement("Slx"); RESULT.appendChild(s); :}
+        ;
+
+
+block ::= CURLY_BRACE_OPEN sxl:sx CURLY_BRACE_CLOSE {: RESULT = sx; doc.renameNode(RESULT, null, "Block"); :}
+          ;
+
+
+
+statement ::= functionDecl:f {: RESULT = doc.createElement("Statement"); RESULT.appendChild(f); :}
+            | assignment:a SEMICOLON {: RESULT = doc.createElement("Statement"); RESULT.appendChild(a); :}
+            | expression:ex SEMICOLON {: RESULT = doc.createElement("Statement");RESULT.appendChild(ex); :}
+            | variableDecl:v {: RESULT = doc.createElement("Statement"); RESULT.appendChild(v); :}
+            | readStatement:r SEMICOLON {: RESULT = doc.createElement("Statement"); RESULT.appendChild(r); :}
+            | writeStatement:wr SEMICOLON {: RESULT = doc.createElement("Statement");RESULT.appendChild(wr); :}
+            | ifStatement:ifs {: RESULT = doc.createElement("Statement");RESULT.appendChild(ifs); :}
+            | whileStatement:w {: RESULT = doc.createElement("Statement");RESULT.appendChild(w); :}
+            | haltStatement:h SEMICOLON {: RESULT = doc.createElement("Statement");RESULT.appendChild(h); :}
+            | block:b {: RESULT = doc.createElement("Statement");RESULT.appendChild(b); :}
+            ;
+
+functionDecl ::= FUNCTION IDENTIFIER:id BRACE_OPEN formalParams:fp BRACE_CLOSE COLON TYPE:t block:b {: RESULT = doc.createElement("FunctionDecl");
+                                                                                       RESULT.appendChild(generateNode("Identifier",id));
+                                                                                       RESULT.appendChild(fp);
+                                                                                       RESULT.appendChild(generateNode("Type",t));
+                                                                                       RESULT.appendChild(b); :}
+                | FUNCTION IDENTIFIER:id BRACE_OPEN BRACE_CLOSE COLON TYPE:t block:b {: RESULT = doc.createElement("FunctionDecl");
+                                                                                        RESULT.appendChild(generateNode("Identifier",id));
+                                                                                        RESULT.appendChild(RESULT = doc.createElement("FormalParams"));
+                                                                                        RESULT.appendChild(generateNode("Type",t));
+                                                                                        RESULT.appendChild(b); :}
+             ;
+
+formalParams ::= formalParam:fp COMMA formalParams:fps {: RESULT = fps;
+                                                          RESULT.insertBefore(fp,RESULT.getFirstChild()); :}
+                 | formalParam:fp {: RESULT = doc.createElement("FormalParams"); RESULT.appendChild(fp); :}
+                 ;
+
+formalParam ::= IDENTIFIER:id COLON TYPE:t {: RESULT = doc.createElement("FormalParam");
+                                              RESULT.appendChild(generateNode("Identifier",id));
+                                              RESULT.appendChild(generateNode("Type",t)); :}
+                ;
+
+assignment ::= SET IDENTIFIER:id TO expression:ex {: RESULT = doc.createElement("Assignment");
+                                                     RESULT.appendChild(generateNode("Identifier",id));
+                                                     RESULT.appendChild(ex); :}
+               ;
+
+expression ::= simpleExpression:s RELATIONAL_OP:op expression:ex {: RESULT = ex;
+                                                                    RESULT.insertBefore(generateNode("RelationalOp",op),RESULT.getFirstChild());
+                                                                    RESULT.insertBefore(s,RESULT.getFirstChild()); :}
+               | simpleExpression:s {: RESULT = doc.createElement("Expression"); RESULT.appendChild(s); :}
+               ;
+
+simpleExpression ::= term:t AdditiveOp:op simpleExpression:se {: RESULT = se;
+                                                                 RESULT.insertBefore(op,RESULT.getFirstChild());
+                                                                 RESULT.insertBefore(t,RESULT.getFirstChild()); :}
+                     | term:t {: RESULT = doc.createElement("SimpleExpression"); RESULT.appendChild(t); :}
+                     ;
+
+term ::= factor:f MultiplicativeOp:op term:t {: RESULT = t;
+                                                RESULT.insertBefore(op,RESULT.getFirstChild());
+                                                RESULT.insertBefore(f,RESULT.getFirstChild()); :}
+         | factor:f {: RESULT = doc.createElement("Term"); RESULT.appendChild(f); :}
+         ;
+
+factor ::= literal:l {: RESULT = doc.createElement("Factor"); RESULT.appendChild(l); :}
+           | IDENTIFIER:id {: RESULT = doc.createElement("Factor"); RESULT.appendChild(generateNode("Identifier",id)); :}
+           | functionCall:fc {: RESULT = doc.createElement("Factor"); RESULT.appendChild(fc); :}
+           | typeCast:tc {: RESULT = doc.createElement("Factor"); RESULT.appendChild(tc); :}
+           | subExpression:se {: RESULT = doc.createElement("Factor"); RESULT.appendChild(se); :}
+           | unary:u {: RESULT = doc.createElement("Factor"); RESULT.appendChild(u); :}
+           ;
+
+literal ::= BOOLEAN_LITERAL:bl {:RESULT = doc.createElement("Literal"); Node child = doc.createElement("BooleanLiteral");  child.setTextContent(bl.toString()); RESULT.appendChild(child);:}
+         | INTEGER_LITERAL:il {:RESULT = doc.createElement("Literal");Node child = doc.createElement("IntegerLiteral");  child.setTextContent(il.toString()); RESULT.appendChild(child);:}
+         | REAL_LITERAL:rl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("RealLiteral");  child.setTextContent(rl.toString()); RESULT.appendChild(child);:}
+         | CHAR_LITERAL:cl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("CharLiteral");  child.setTextContent(cl.toString()); RESULT.appendChild(child);:}
+         | STRING_LITERAL:sl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("StringLiteral");  child.setTextContent(sl.toString());RESULT.appendChild(child); :}
+         | UNIT_LITERAL:ul {:RESULT = doc.createElement("Literal");Node child = doc.createElement("UnitLiteral");  child.setTextContent(ul.toString()); RESULT.appendChild(child);:}
+         ;
+
+functionCall ::= IDENTIFIER:id BRACE_OPEN actualParams:ap BRACE_CLOSE {: RESULT = doc.createElement("FunctionCall");
+                                                                         RESULT.appendChild(generateNode("Identifier",id));
+                                                                         RESULT.appendChild(ap); :}
+                 | IDENTIFIER:id BRACE_OPEN BRACE_CLOSE {: RESULT = doc.createElement("FunctionCall");
+                                                           RESULT.appendChild(generateNode("Identifier",id));
+                                                           RESULT.appendChild(doc.createElement("ActualParams")); :}
+                 ;
+
+typeCast ::= BRACE_OPEN TYPE:t BRACE_CLOSE expression:ex {: RESULT = doc.createElement("TypeCast");
+                                                            RESULT.appendChild(generateNode("Type",t));
+                                                            RESULT.appendChild(ex); :}
+             ;
+
+subExpression ::= BRACE_OPEN expression:ex BRACE_CLOSE   {: RESULT = doc.createElement("SubExpression");
+                                                            RESULT.appendChild(ex); :}
+                  ;
+
+unary ::= PLUS expression:ex {: RESULT = doc.createElement("Unary"); RESULT.setTextContent("+"); RESULT.appendChild(ex); :}
+          | MINUS expression:ex {: RESULT = doc.createElement("Unary"); RESULT.setTextContent("-"); RESULT.appendChild(ex); :}
+          | NOT expression:ex {: RESULT = doc.createElement("Unary"); RESULT.setTextContent("not"); RESULT.appendChild(ex); :}
+          ;
+
+actualParams ::= expression:ex COMMA actualParams:ap {: RESULT = ap;
+                                                        RESULT.insertBefore(ex,RESULT.getFirstChild()); :}
+                 | expression:ex {: RESULT = doc.createElement("ActualParams");RESULT.appendChild(ex);:}
+                 ;
+
+variableDecl ::= LET  IDENTIFIER:id COLON TYPE:t EQ expression:e SEMICOLON {: RESULT = doc.createElement("VariableDecl");
+                                                                              RESULT.appendChild(generateNode("Identifier",id));
+                                                                              RESULT.appendChild(generateNode("Type",t));
+                                                                              RESULT.appendChild(e); :}
+                 | LET  IDENTIFIER:id COLON TYPE:t EQ expression:e IN  block:b {: RESULT = doc.createElement("VariableDecl");
+                                                                                  RESULT.appendChild(generateNode("Identifier",id));
+                                                                                  RESULT.appendChild(generateNode("Type",t));
+                                                                                  RESULT.appendChild(b); :}
+                 ;
+
+writeStatement ::= WRITE IDENTIFIER:id {: RESULT = doc.createElement("WriteStatement"); RESULT.appendChild(generateNode("Identifier",id)); :}
+                  ;
+
+readStatement ::= READ IDENTIFIER:id {: RESULT = doc.createElement("ReadStatement"); RESULT.appendChild(generateNode("Identifier",id)); :}
+                  ;
+
+ifStatement ::= IF BRACE_OPEN expression:ex BRACE_CLOSE statement:s elseStatement:el {: RESULT = doc.createElement("IfStatement");
+                                                                                         RESULT.appendChild(ex);
+                                                                                         RESULT.appendChild(s);
+                                                                                         if (el!=null) RESULT.appendChild(el);:}
+                ;
+
+elseStatement ::= ELSE statement:s  {: RESULT = s; :}
+                  | /* empty */ {: RESULT = null; :}
+                  ;
+
+whileStatement ::= WHILE BRACE_OPEN  expression:ex  BRACE_CLOSE statement:s {: RESULT = doc.createElement("WhileStatement");
+                                                                               RESULT.appendChild(ex);
+                                                                               RESULT.appendChild(s); :}
+                  ;
+
+haltStatement ::= HALT INTEGER_LITERAL:il {: RESULT = doc.createElement("HaltStatement");Node child = doc.createElement("IntegerLiteral");  child.setTextContent(il.toString()); RESULT.appendChild(child); :}
+                  | HALT IDENTIFIER:id {: RESULT = doc.createElement("HaltStatement"); RESULT.appendChild(generateNode("Identifier",id)); :}
+                  | HALT {: RESULT = doc.createElement("HaltStatement"); :}
+                  ;
+
+
+AdditiveOp ::= PLUS {: RESULT = doc.createElement("AdditiveOp");  RESULT.setTextContent("+"); :}
+                | MINUS {: RESULT = doc.createElement("AdditiveOp");  RESULT.setTextContent("-"); :}
+                | OR {: RESULT = doc.createElement("AdditiveOp");  RESULT.setTextContent("or"); :}
+                ;
+
+MultiplicativeOp ::= MULTIPLICATION {: RESULT = doc.createElement("MultiplicativeOp");  RESULT.setTextContent("*"); :}
+                      | DIVISION {: RESULT = doc.createElement("MultiplicativeOp");  RESULT.setTextContent("/"); :}
+                      | AND {: RESULT = doc.createElement("MultiplicativeOp");  RESULT.setTextContent("and"); :}
+                      ;

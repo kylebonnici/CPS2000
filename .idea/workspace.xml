@@ -2,9 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97149cb7-5cd1-47b1-94fd-40e8c7cabf42" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/Parser.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/Parser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java" afterPath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/out.xml" afterPath="$PROJECT_DIR$/out/production/CPS2000/out.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/jflex.flex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jflex_1_6_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/jparser.cup" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/bnf.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/code.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/lexer/Lexer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/lexer/Token.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/lexer/TokenClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/BlockStackFrame.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/FunctionStackFrame.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/Parser$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/Parser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/parser/VariableStruct.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/com/um/mt/kyle/runner/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/oldCode.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CPS2000/out.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Token.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/lexer/TokenClass.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/bnf.txt" afterPath="$PROJECT_DIR$/src/resources/bnf.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/code.txt" afterPath="$PROJECT_DIR$/src/resources/code.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Lexer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/BlockStackFrame.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/BlockStackFrame.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/FunctionStackFrame.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/parser/VariableStruct.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parser/VariableStruct.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/um/mt/kyle/runner/Main.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runner/Main.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/oldCode.txt" afterPath="$PROJECT_DIR$/src/resources/oldCode.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/out.xml" afterPath="$PROJECT_DIR$/src/resources/out.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CPS2000.iml" afterPath="$PROJECT_DIR$/CPS2000.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CPS2000.iws" />
@@ -28,129 +58,110 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.903226">
-              <caret line="1036" column="97" selection-start-line="1036" selection-start-column="97" selection-end-line="1036" selection-end-column="97" />
+            <state vertical-scroll-proportion="-5.6296296">
+              <caret line="1061" column="0" selection-start-line="1061" selection-start-column="0" selection-end-line="1061" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1787#1788#0" expanded="true" />
-                <element signature="e#1837#1838#0" expanded="true" />
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#492#493#0" expanded="true" />
+                <element signature="e#36706#36707#0" expanded="true" />
+                <element signature="e#36781#36782#0" expanded="true" />
+                <element signature="e#37131#37132#0" expanded="true" />
+                <element signature="e#37186#37187#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FunctionStackFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/FunctionStackFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-              <folding>
-                <element signature="e#255#271#0" expanded="true" />
-                <element signature="e#598#599#0" expanded="true" />
-                <element signature="e#656#657#0" expanded="true" />
-                <element signature="e#1224#1225#0" expanded="true" />
-                <element signature="e#1256#1257#0" expanded="true" />
-                <element signature="e#1286#1287#0" expanded="true" />
-                <element signature="e#1313#1314#0" expanded="true" />
-                <element signature="e#2072#2073#0" expanded="true" />
-                <element signature="e#2107#2108#0" expanded="true" />
-                <element signature="e#2143#2144#0" expanded="true" />
-                <element signature="e#2176#2177#0" expanded="true" />
-                <element signature="e#2209#2210#0" expanded="true" />
-                <element signature="e#2242#2243#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockStackFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/BlockStackFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="76" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="76" />
-              <folding>
-                <element signature="e#209#225#0" expanded="true" />
-                <element signature="e#301#321#0" expanded="true" />
-                <element signature="e#422#423#0" expanded="true" />
-                <element signature="e#468#469#0" expanded="true" />
-                <element signature="e#2761#2762#0" expanded="true" />
-                <element signature="e#2815#2816#0" expanded="true" />
-                <element signature="e#3194#3195#0" expanded="true" />
-                <element signature="e#3253#3254#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VariableStruct.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/VariableStruct.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-              <folding>
-                <element signature="e#554#555#0" expanded="true" />
-                <element signature="e#587#588#0" expanded="true" />
-                <element signature="e#617#618#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bnf.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bnf.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.333333">
-              <caret line="24" column="17" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="code.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/code.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.103270225">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Token.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TokenClass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/TokenClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="14" />
-              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Lexer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.9259257">
+              <caret line="91" column="55" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
+              <folding>
+                <element signature="e#267#275#0" expanded="true" />
+                <element signature="e#964#965#0" expanded="true" />
+                <element signature="e#1017#1018#0" expanded="true" />
+                <element signature="e#1069#1070#0" expanded="true" />
+                <element signature="e#1130#1131#0" expanded="true" />
+                <element signature="e#1174#1175#0" expanded="true" />
+                <element signature="e#1203#1204#0" expanded="true" />
+                <element signature="e#13260#13261#0" expanded="true" />
+                <element signature="e#13294#13295#0" expanded="true" />
+                <element signature="e#13464#13465#0" expanded="true" />
+                <element signature="e#13502#13503#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jparser.cup" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.259259">
+              <caret line="110" column="22" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParentNode.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/com/sun/org/apache/xerces/internal/dom/ParentNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+              <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bnf.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="11" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Runtime.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.65082645">
+              <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
               <folding>
-                <element signature="e#12824#12825#0" expanded="true" />
-                <element signature="e#12858#12859#0" expanded="true" />
-                <element signature="e#13027#13028#0" expanded="true" />
-                <element signature="e#13065#13066#0" expanded="true" />
-                <element signature="e#13098#13099#0" expanded="true" />
-                <element signature="e#13141#13142#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#826#843#0" expanded="true" />
+                <element signature="e#900#908#0" expanded="true" />
+                <element signature="e#1085#1086#0" expanded="true" />
+                <element signature="e#1108#1109#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="code.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="375" column="38" selection-start-line="375" selection-start-column="38" selection-end-line="375" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#543#544#0" expanded="true" />
+                <element signature="e#598#599#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,9 +193,27 @@
         <option value="$PROJECT_DIR$/src/com/um/mt/kyle/parser/VariableStruct.java" />
         <option value="$PROJECT_DIR$/src/com/um/mt/kyle/parser/FunctionStackFrame.java" />
         <option value="$PROJECT_DIR$/src/com/um/mt/kyle/parser/BlockStackFrame.java" />
+        <option value="$PROJECT_DIR$/src/com/um/mt/kyle/typecheck/TypeChecker.java" />
+        <option value="$PROJECT_DIR$/src/com/um/mt/kyle/runtime/Runtime.java" />
+        <option value="$PROJECT_DIR$/src/com/um/mt/kyle/runtime/TypeChecker.java" />
         <option value="$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java" />
         <option value="$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runner/Main.java" />
         <option value="$PROJECT_DIR$/src/code.txt" />
+        <option value="$PROJECT_DIR$/src/jflex.flex" />
+        <option value="$PROJECT_DIR$/src/jparser.cup" />
+        <option value="$PROJECT_DIR$/src/resources/bnf.txt" />
+        <option value="$PROJECT_DIR$/src/resources/oldCode.txt" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/JFlexLexer.java" />
+        <option value="$PROJECT_DIR$/src/resources/jflex.flex" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Lexer.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/JParser.java" />
+        <option value="$PROJECT_DIR$/src/resources/code.txt" />
+        <option value="$PROJECT_DIR$/src/resources/jparser.cup" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java" />
       </list>
     </option>
   </component>
@@ -218,7 +247,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -226,6 +256,10 @@
               <option name="myItemId" value="CPS2000" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -250,6 +284,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -265,7 +303,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kyle" />
+              <option name="myItemId" value="cps2000" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CPS2000" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CPS2000" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cps2000" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -287,7 +347,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kyle" />
+              <option name="myItemId" value="cps2000" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -309,7 +369,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kyle" />
+              <option name="myItemId" value="cps2000" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -317,10 +377,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CPS2000" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CPS2000" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,10 +409,43 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/lib/java-cup-11b-runtime.jar!/" />
     <property name="FullScreen" value="true" />
+    <property name="settings.editor.selected.configurable" value="org.intellij.lang.jflex.options.JFlexConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration default="false" name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="mt.edu.um.cs.cps2000.runner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="mt.edu.um.cs.cps2000.runner.Main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="CPS2000" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -551,9 +661,15 @@
       <envs />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Main (1)" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.Main (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
     <option name="externalProjectsViewState">
@@ -575,7 +691,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -583,7 +699,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39976552" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39976552" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -593,10 +709,10 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28604925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28604925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
@@ -617,25 +733,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java</url>
-          <line>1797</line>
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java</url>
+          <line>34</line>
           <properties />
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java</url>
-          <line>1798</line>
-          <properties />
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java</url>
-          <line>607</line>
-          <properties />
-          <option name="timeStamp" value="59" />
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="77" />
+      <option name="time" value="137" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -644,124 +748,752 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/runner/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="80" selection-start-line="11" selection-start-column="80" selection-end-line="11" selection-end-column="80" />
+          <caret line="22" column="46" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/TokenClass.java">
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/VariableStruct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding>
-            <element signature="e#554#555#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/FunctionStackFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-          <folding>
-            <element signature="e#255#271#0" expanded="true" />
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#1224#1225#0" expanded="true" />
-            <element signature="e#1256#1257#0" expanded="true" />
-            <element signature="e#1286#1287#0" expanded="true" />
-            <element signature="e#1313#1314#0" expanded="true" />
-            <element signature="e#2072#2073#0" expanded="true" />
-            <element signature="e#2107#2108#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
-            <element signature="e#2176#2177#0" expanded="true" />
-            <element signature="e#2209#2210#0" expanded="true" />
-            <element signature="e#2242#2243#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/BlockStackFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="76" selection-start-line="63" selection-start-column="76" selection-end-line="63" selection-end-column="76" />
-          <folding>
-            <element signature="e#209#225#0" expanded="true" />
-            <element signature="e#301#321#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#2761#2762#0" expanded="true" />
-            <element signature="e#2815#2816#0" expanded="true" />
-            <element signature="e#3194#3195#0" expanded="true" />
-            <element signature="e#3253#3254#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/lexer/Lexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
-          <folding>
-            <element signature="e#12824#12825#0" expanded="true" />
-            <element signature="e#12858#12859#0" expanded="true" />
-            <element signature="e#13027#13028#0" expanded="true" />
-            <element signature="e#13065#13066#0" expanded="true" />
-            <element signature="e#13098#13099#0" expanded="true" />
-            <element signature="e#13141#13142#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bnf.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/um/mt/kyle/parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.903226">
-          <caret line="1036" column="97" selection-start-line="1036" selection-start-column="97" selection-end-line="1036" selection-end-column="97" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1787#1788#0" expanded="true" />
-            <element signature="e#1837#1838#0" expanded="true" />
+            <element signature="e#826#843#0" expanded="true" />
+            <element signature="e#900#908#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/code.txt">
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.103270225">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#36706#36707#0" expanded="true" />
+            <element signature="e#36781#36782#0" expanded="true" />
+            <element signature="e#37131#37132#0" expanded="true" />
+            <element signature="e#37186#37187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jflex.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+          <folding>
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Uni/Year 2/CPS2000/Tutorial/parser-tutorial-1/resources/language-fixed.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="118" selection-start-line="83" selection-start-column="118" selection-end-line="83" selection-end-column="118" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#826#843#0" expanded="true" />
+            <element signature="e#900#908#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#36706#36707#0" expanded="true" />
+            <element signature="e#36781#36782#0" expanded="true" />
+            <element signature="e#37131#37132#0" expanded="true" />
+            <element signature="e#37186#37187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jflex.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+          <folding>
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Uni/Year 2/CPS2000/Tutorial/parser-tutorial-1/resources/language-fixed.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="118" selection-start-line="83" selection-start-column="118" selection-end-line="83" selection-end-column="118" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#826#843#0" expanded="true" />
+            <element signature="e#900#908#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#36706#36707#0" expanded="true" />
+            <element signature="e#36781#36782#0" expanded="true" />
+            <element signature="e#37131#37132#0" expanded="true" />
+            <element signature="e#37186#37187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jflex.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="458" column="23" selection-start-line="458" selection-start-column="23" selection-end-line="458" selection-end-column="23" />
+          <folding>
+            <element signature="e#267#275#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#13260#13261#0" expanded="true" />
+            <element signature="e#13294#13295#0" expanded="true" />
+            <element signature="e#13464#13465#0" expanded="true" />
+            <element signature="e#13502#13503#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1306" column="39" selection-start-line="1306" selection-start-column="39" selection-end-line="1306" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#36706#36707#0" expanded="true" />
+            <element signature="e#36781#36782#0" expanded="true" />
+            <element signature="e#37131#37132#0" expanded="true" />
+            <element signature="e#37186#37187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="458" column="36" selection-start-line="458" selection-start-column="36" selection-end-line="458" selection-end-column="36" />
+          <folding>
+            <element signature="e#267#275#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#13260#13261#0" expanded="true" />
+            <element signature="e#13294#13295#0" expanded="true" />
+            <element signature="e#13464#13465#0" expanded="true" />
+            <element signature="e#13502#13503#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parser/VariableStruct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.697074">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.16179001">
+          <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+          <folding>
+            <element signature="e#315#331#0" expanded="false" />
+            <element signature="e#658#659#0" expanded="false" />
+            <element signature="e#716#717#0" expanded="false" />
+            <element signature="e#1284#1285#0" expanded="false" />
+            <element signature="e#1316#1317#0" expanded="false" />
+            <element signature="e#1346#1347#0" expanded="false" />
+            <element signature="e#1373#1374#0" expanded="false" />
+            <element signature="e#2132#2133#0" expanded="false" />
+            <element signature="e#2167#2168#0" expanded="false" />
+            <element signature="e#2203#2204#0" expanded="false" />
+            <element signature="e#2236#2237#0" expanded="false" />
+            <element signature="e#2269#2270#0" expanded="false" />
+            <element signature="e#2302#2303#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/BlockStackFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8709122">
+          <caret line="65" column="76" selection-start-line="65" selection-start-column="76" selection-end-line="65" selection-end-column="76" />
+          <folding>
+            <element signature="e#268#284#0" expanded="false" />
+            <element signature="e#360#380#0" expanded="false" />
+            <element signature="e#481#482#0" expanded="false" />
+            <element signature="e#527#528#0" expanded="false" />
+            <element signature="e#2820#2821#0" expanded="false" />
+            <element signature="e#2874#2875#0" expanded="false" />
+            <element signature="e#3253#3254#0" expanded="false" />
+            <element signature="e#3312#3313#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runner/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30991736">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Uni/Year 2/CPS2000/Tutorial/cup-tutorial-1/resources/language.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Uni/Year 2/CPS2000/Tutorial/parser-tutorial-1/resources/language-fixed.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/oldCode.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="28" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Uni/Year 2/CPS2000/Tutorial/cup-tutorial-1/resources/parser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/share/jflex/lib/jflex-1.6.1.jar!/java_cup/runtime/Symbol.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.075">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jflex.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" { " />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder=" }" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1430597443000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="375" column="38" selection-start-line="375" selection-start-column="38" selection-end-line="375" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/JFlexLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38726333">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.9259257">
+          <caret line="91" column="55" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
+          <folding>
+            <element signature="e#267#275#0" expanded="true" />
+            <element signature="e#964#965#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1130#1131#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#13260#13261#0" expanded="true" />
+            <element signature="e#13294#13295#0" expanded="true" />
+            <element signature="e#13464#13465#0" expanded="true" />
+            <element signature="e#13502#13503#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/com/sun/org/apache/xerces/internal/dom/ParentNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/org/w3c/dom/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5805785">
+          <caret line="268" column="16" selection-start-line="268" selection-start-column="16" selection-end-line="268" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27066115">
+          <caret line="207" column="59" selection-start-line="207" selection-start-column="59" selection-end-line="207" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/lexer/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6296296">
+          <caret line="1061" column="0" selection-start-line="1061" selection-start-column="0" selection-end-line="1061" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#36706#36707#0" expanded="true" />
+            <element signature="e#36781#36782#0" expanded="true" />
+            <element signature="e#37131#37132#0" expanded="true" />
+            <element signature="e#37186#37187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.259259">
+          <caret line="110" column="22" selection-start-line="110" selection-start-column="22" selection-end-line="110" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65082645">
+          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#826#843#0" expanded="true" />
+            <element signature="e#900#908#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>scala-sdk-2.11.4</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>CPS2000</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>java-cup-11b-runtime</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

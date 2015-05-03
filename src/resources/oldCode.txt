@@ -1,0 +1,29 @@
+ package mt.edu.um.cs.cps2000.parser;
+
+ import org.w3c.dom.Document;
+ import org.w3c.dom.Element;
+ import org.w3c.dom.Node;
+
+ class JParser;
+
+ terminal Node          TYPE , BOOLEAN_LITERAL, INTEGER_LITERAL, REAL_LITERAL, CHAR_LITERAL, STRING_LITERAL,UNIT_LITERAL, IDENTIFIER;
+ terminal Node          MULTIPLICATIVE_OP, ADDITIVE_OP, RELATIONAL_OP, KEY_SYMBOL, KEYWORD, ERROR;
+ terminal               PLUS, MINUS, MULTIPLICATION, DIVISION;
+ terminal               BOOL_AND, BOOL_OR, BOOL_NOT;
+ terminal               SEMICOLON, COLON, COMMA;
+
+ non terminal Node         literal, actualParams, functionCall, typeCast, subExpression, expression;
+
+
+
+ precedence left     PLUS, MINUS;
+ precedence left     MULTIPLICATION, DIVISION;
+
+
+ literal ::= BOOLEAN_LITERAL:bl {: RESULT = doc.createElement("BooleanLiteral");  RESULT.setTextContent(bl); :}
+             | INTEGER_LITERAL:il {: RESULT = doc.createElement("IntegerLiteral");  RESULT.setTextContent(il); :}
+             | REAL_LITERAL:rl {: RESULT = doc.createElement("RealLiteral");  RESULT.setTextContent(rl); :}
+             | CHAR_LITERAL:cl {: RESULT = doc.createElement("CharLiteral");  RESULT.setTextContent(cl); :}
+             | STRING_LITERAL:sl {: RESULT = doc.createElement("StringLiteral");  RESULT.setTextContent(sl); :}
+             | UNIT_LITERAL:ul; {: RESULT = doc.createElement("UnitLiteral");  RESULT.setTextContent(ul); :}
+             ;

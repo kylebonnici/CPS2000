@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Slx><Statement><VariableDecl><Identifier>y</Identifier><Type>int</Type><Expression><SimpleExpression><Term><Factor><Literal><IntegerLiteral>1</IntegerLiteral></Literal></Factor></Term></SimpleExpression></Expression></VariableDecl></Statement></Slx>
