@@ -1,3 +1,5 @@
+let dd : int = 2.0;
+
 function pow( x : real, n : int ) : real
 {
     let y : real = 4.0;
@@ -14,3 +16,9 @@ function pow( x : real, n : int ) : real
     }
     y;
 }
+
+let a : int  = 1;
+
+let a: real = 1.0;
+
+set a <- pow(1.9,1);

@@ -1,4 +1,4 @@
-package mt.edu.um.cs.cps2000.parser;
+package mt.edu.um.cs.cps2000.runtime;
 
 /**
  * Created by kylebonnici on 30/04/15.
@@ -26,5 +26,13 @@ public class VariableStruct {
 
     public String getType(){
         return type;
+    }
+
+    public Object getValue(){
+        return value;
+    }
+
+    public void setValue(Object value){
+        this.value = value;
     }
 }

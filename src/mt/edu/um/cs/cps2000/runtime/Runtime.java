@@ -2,12 +2,11 @@ package mt.edu.um.cs.cps2000.runtime;
 
 import java_cup.runtime.Scanner;
 import java_cup.runtime.Symbol;
-import mt.edu.um.cs.cps2000.lexer.JFlexLexer;
-import mt.edu.um.cs.cps2000.lexer.JParser;
-import mt.edu.um.cs.cps2000.lexer.Lexer;
-import mt.edu.um.cs.cps2000.lexer.Parser;
+import mt.edu.um.cs.cps2000.parseandlexer.JFlexLexer;
+import mt.edu.um.cs.cps2000.parseandlexer.JParser;
+import mt.edu.um.cs.cps2000.parseandlexer.Lexer;
+import mt.edu.um.cs.cps2000.parseandlexer.Parser;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -23,13 +22,12 @@ import java.util.Stack;
 /**
  * Created by kylebonnici on 01/05/15.
  */
-public class Runtime {
+public class Runtime extends Execute{
     private Stack<BlockStackFrame> stackFrames = new Stack<BlockStackFrame>() ;
     private ArrayList<Symbol> tokens = new ArrayList<Symbol>();
     private Document doc;
     private boolean useMyLexer = false;
     private boolean useMyParser = false;
-    private boolean showLineNumbers = false;
 
     public Runtime(){
         start();
@@ -104,7 +102,10 @@ public class Runtime {
                         }catch (Exception e){
                             e.printStackTrace();
                         }
+
                     }
+
+                    run(doc.getDocumentElement());
 
                     try {
                         brLex.close();

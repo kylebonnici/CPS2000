@@ -1,7 +1,5 @@
 package mt.edu.um.cs.cps2000.runtime;
 
-import mt.edu.um.cs.cps2000.parser.VariableStruct;
-
 import java.util.ArrayList;
 
 /**

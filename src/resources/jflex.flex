@@ -5,6 +5,7 @@ import java_cup.runtime.*;
 %public
 %class JFlexLexer
 %cup
+%line
 %eofval{
   return new Symbol(JParserSym.EOF);
 %eofval}

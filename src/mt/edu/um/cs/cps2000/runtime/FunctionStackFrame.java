@@ -1,6 +1,6 @@
 package mt.edu.um.cs.cps2000.runtime;
 
-import mt.edu.um.cs.cps2000.parser.VariableStruct;
+import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 
@@ -10,13 +10,15 @@ import java.util.ArrayList;
 public class FunctionStackFrame extends BlockStackFrame {
     private String identifier;
     private ArrayList<VariableStruct> prams = new ArrayList<VariableStruct>();
-    private String type = "";
-    private int lineNumber = -1;
+    private String type = "Unknown";
+    private String lineNumber = "-1";
+    private Node functionDef = null;
 
-    public FunctionStackFrame(BlockStackFrame parentFrame, String identifier, int lineNumber){
+    public FunctionStackFrame(BlockStackFrame parentFrame, String identifier, String lineNumber,Node functionDef){
         super(parentFrame);
         this.lineNumber = lineNumber;
         this.identifier = identifier;
+        this.functionDef = functionDef;
     }
 
     public boolean hasPramVariable(String identifier){
@@ -90,7 +92,7 @@ public class FunctionStackFrame extends BlockStackFrame {
         return identifier;
     }
 
-    public int getLineNumber(){
+    public String getLineNumber(){
         return lineNumber;
     }
 }

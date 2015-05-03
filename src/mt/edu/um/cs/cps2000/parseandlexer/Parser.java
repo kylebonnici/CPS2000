@@ -1,4 +1,4 @@
-package mt.edu.um.cs.cps2000.lexer;
+package mt.edu.um.cs.cps2000.parseandlexer;
 
 import java_cup.runtime.Symbol;
 import java.io.*;
@@ -26,7 +26,7 @@ public class Parser {
         try {
             Symbol token = s.next_token();
 
-            while (token != null) {
+            while (token.sym != JParserSym.EOF) {
                 tokens.add(token);
                 token.toString();
                 token = s.next_token();
@@ -720,7 +720,7 @@ public class Parser {
         if (startSimpleExpression != null) {
             parent.appendChild(startSimpleExpression);
 
-            while (isA(JParserSym.RELATIONAL_OP)) {
+            if (isA(JParserSym.RELATIONAL_OP)) {
                 tokenIndex--;
                 parent.appendChild(isRelationalOp());
 
@@ -1181,6 +1181,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1193,6 +1194,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1205,6 +1207,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1217,6 +1220,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1229,6 +1233,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1241,6 +1246,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1253,6 +1259,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1262,8 +1269,10 @@ public class Parser {
         Element parent = doc.createElement("MultiplicativeOp");
 
         if (isAMultiplicativeOp()) {
-            parent.setTextContent(tokens.get(tokenIndex).value.toString());
+            String sym = (currentTokenType() == JParserSym.MULTIPLICATION? "*" : (currentTokenType() == JParserSym.DIVISION? "/" : "and")) ;
+            parent.setTextContent(sym);
             tokenIndex++;
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
             return parent;
         }
         tokenIndex++;
@@ -1278,8 +1287,10 @@ public class Parser {
         Element parent = doc.createElement("AdditiveOp");
 
         if (isAAdditiveOp()) {
-            parent.setTextContent(tokens.get(tokenIndex).value.toString());
+            String sym = (currentTokenType() == JParserSym.PLUS? "+" : (currentTokenType() == JParserSym.MINUS? "-" : "not")) ;
+            parent.setTextContent(sym);
             tokenIndex++;
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
             return parent;
         }
 
@@ -1295,12 +1306,11 @@ public class Parser {
     private Node isIdentifier() {
         Element parent = doc.createElement("Identifier");
 
-        int lineNumber = currentTokenLineNumber();
-
         if (!isA(JParserSym.IDENTIFIER)) {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1313,6 +1323,7 @@ public class Parser {
             return null;
         } else {
             parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
         return parent;
@@ -1329,7 +1340,7 @@ public class Parser {
 
     private int currentTokenLineNumber() {
         if (tokenIndex >= tokens.size()) return -1;
-        return tokens.get(tokenIndex).left;
+        return tokens.get(tokenIndex-1).left;
     }
 
     private int currentTokenType() {

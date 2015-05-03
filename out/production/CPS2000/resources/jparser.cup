@@ -20,6 +20,7 @@ parser code {:
   private Node generateNode(String type, String textContent){
     Node node = doc.createElement(type);
     node.setTextContent(textContent);
+    ((Element)node).setAttribute("lineNumber",stack.peek().left + "");
     return node;
   }
 
@@ -98,9 +99,10 @@ assignment ::= SET IDENTIFIER:id TO expression:ex {: RESULT = doc.createElement(
                                                      RESULT.appendChild(ex); :}
                ;
 
-expression ::= simpleExpression:s RELATIONAL_OP:op expression:ex {: RESULT = ex;
-                                                                    RESULT.insertBefore(generateNode("RelationalOp",op),RESULT.getFirstChild());
-                                                                    RESULT.insertBefore(s,RESULT.getFirstChild()); :}
+expression ::= simpleExpression:s1 RELATIONAL_OP:op simpleExpression:s2 {: RESULT = doc.createElement("Expression");
+                                                                           RESULT.appendChild(s1);
+                                                                           RESULT.appendChild(generateNode("RelationalOp",op));
+                                                                           RESULT.appendChild(s2); :}
                | simpleExpression:s {: RESULT = doc.createElement("Expression"); RESULT.appendChild(s); :}
                ;
 

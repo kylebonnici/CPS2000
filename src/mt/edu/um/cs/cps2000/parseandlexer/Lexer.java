@@ -1,4 +1,4 @@
-package mt.edu.um.cs.cps2000.lexer;
+package mt.edu.um.cs.cps2000.parseandlexer;
 
 import java_cup.runtime.Symbol;
 
@@ -23,7 +23,7 @@ public class Lexer implements java_cup.runtime.Scanner {
             System.out.println(ex.getMessage());
         }
 
-        if (tokenIndex >= tokens.size()) return null;
+        if (tokenIndex >= tokens.size()) return new Symbol(JParserSym.EOF);
         return tokens.get(tokenIndex++);
     }
 
