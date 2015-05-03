@@ -374,7 +374,7 @@ public class TypeChecker {
                 ok = false;
             }
 
-            if (ok) {
+            if (!expType.equals("bool") && ok) {
                 ok =  checkFactor(list.item(loops));
                 String found = getFactorLiteralType(list.item(loops));
 
@@ -412,7 +412,7 @@ public class TypeChecker {
                 ok = false;
             }
 
-            if (ok) {
+            if (ok && !expType.equals("bool")) {
                 ok = checkTerm(list.item(loops));
                 String found = getTermLiteralType(list.item(loops));
 

@@ -205,7 +205,7 @@ public class Lexer implements java_cup.runtime.Scanner {
         if (str.toString().equals("true")) {
             tokens.add(symbol(JParserSym.BOOLEAN_LITERAL,new Boolean(true)));
         } else if (str.toString().equals("false")) {
-            tokens.add(symbol(JParserSym.BOOLEAN_LITERAL,new Boolean(true)));
+            tokens.add(symbol(JParserSym.BOOLEAN_LITERAL,new Boolean(false)));
         } else {
             out = false;
         }

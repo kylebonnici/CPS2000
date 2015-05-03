@@ -245,13 +245,13 @@ public class Execute extends TypeChecker {
         }else {
             for (int loops = 2 ; loops < node.getChildNodes().getLength();loops +=2){
                 String expType = getSimpleExpressionLiteralType(node);
-                String op = node.getChildNodes().item(1).getTextContent();
+                String op = node.getChildNodes().item(loops - 1).getTextContent();
                 Object sExp2 = runTermExpression(node.getChildNodes().item(loops));
                 if (expType.equals("bool")){
-                    if (sExp1.toString().equals("true")){
+                    if (sExp1.toString().equals("true") || sExp2.toString().equals("true")){
                         return new Boolean(true);
                     }else {
-                        sExp1 = runTermExpression(node.getChildNodes().item(loops));
+                        sExp1 = sExp2;
                     }
                 }else if (expType.equals("int")){
                     int i1 = (new Integer(sExp1.toString())).intValue();
@@ -287,13 +287,13 @@ public class Execute extends TypeChecker {
         }else {
             for (int loops = 2 ; loops < node.getChildNodes().getLength();loops +=2){
                 String expType = getTermLiteralType(node);
-                String op = node.getChildNodes().item(1).getTextContent();
+                String op = node.getChildNodes().item(loops - 1).getTextContent();
                 Object sExp2 = runFactor(node.getChildNodes().item(loops));
                 if (expType.equals("bool")){
-                    if (sExp1.toString().equals("false")){
+                    if (sExp1.toString().equals("false") || sExp1.toString().equals("false")){
                         return new Boolean(false);
                     }else {
-                        sExp1 = runTermExpression(node.getChildNodes().item(loops));
+                        sExp1 = sExp2;
                     }
                 }else if (expType.equals("int")){
                     int i1 = (new Integer(sExp1.toString())).intValue();
