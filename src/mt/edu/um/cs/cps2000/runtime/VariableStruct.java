@@ -11,7 +11,7 @@ public class VariableStruct {
     public VariableStruct(String identifier, String type){
         this.identifier = identifier;
         this.type = type;
-        this.value = null;
+        this.value = new String("");
     }
 
     public VariableStruct(String identifier, String type, Object value){
@@ -25,6 +25,15 @@ public class VariableStruct {
     }
 
     public String getType(){
+        if (type.equals("god")){
+            if (value instanceof Integer) return "int";
+            else if (value instanceof Double) return "double";
+            else if (value instanceof Character) return "char";
+            else if (value instanceof String) return "string";
+            else if (value instanceof Boolean) return "bool";
+            else return "ERROR";
+        }
+
         return type;
     }
 
@@ -32,7 +41,67 @@ public class VariableStruct {
         return value;
     }
 
-    public void setValue(Object value){
-        this.value = value;
+    public boolean setValue(String value){
+        try{
+            if (type.equals("int")){
+                this.value = Integer.parseInt(value);
+            }else if (type.equals("real")){
+                this.value = Double.parseDouble(value);
+            }else if (type.equals("bool")){
+                this.value = Boolean.parseBoolean(value);
+            }else if (type.equals("char")){
+                if (value.length() == 1) {
+                    this.value = new Character(value.charAt(0));
+                }else{
+                    throw new Exception("");
+                }
+            }else if (type.equals("god")){
+                setGodValue(value);
+            }else {
+                this.value = value;
+            }
+
+            return true;
+        }catch (Exception e){
+            System.out.println("Expecting " + getType());
+        }
+
+        return false;
+    }
+
+    private void setGodValue(String value){
+        setGodValue(value,1);
+    }
+
+    private void setGodValue(String value, int type){
+        try{
+            switch (type){
+                case 1:
+                    this.value = Integer.parseInt(value);
+                    break;
+                case 2:
+                    this.value = Double.parseDouble(value);
+                    break;
+                case 3:
+                    if (value.equals("true") || value.equals("false")){
+                        this.value = Boolean.parseBoolean(value);
+                    }else{
+                        throw new Exception("");
+                    }
+                    break;
+                case 4:
+                    if (value.length() == 1) {
+                        this.value = new Character(value.charAt(0));
+                    }else{
+                        throw new Exception("");
+                    }
+                    break;
+                case 5:
+                    this.value = value;
+                    break;
+            }
+        }catch (Exception e){
+            setGodValue(value,type+1);
+        }
     }
 }

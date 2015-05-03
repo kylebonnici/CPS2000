@@ -14,6 +14,11 @@ public class Parser {
     private Document doc;
     public boolean useLineNumbers = false;
     private boolean done = false;
+    private boolean error = false;
+
+    public boolean getError(){
+        return error;
+    }
 
     public void setDoc(Document doc){
         this.doc = doc;
@@ -44,7 +49,7 @@ public class Parser {
     }
 
     private boolean isDone() {
-        if (!done) done = tokenIndex >= tokens.size();
+        done = tokenIndex >= tokens.size();
         return done;
     }
 
@@ -283,12 +288,13 @@ public class Parser {
     private Node isActualParams() {
         Element parent = doc.createElement("ActualParams");
 
+        int lastTokenIndex = tokenIndex;
+
         Node expression = isExpression();
 
         if (expression != null) {
             parent.appendChild(expression);
 
-            int lastTokenIndex = tokenIndex;
             int lineNumber;
 
             while (isSymbol(",", true)) {
@@ -313,6 +319,8 @@ public class Parser {
 
             return parent;
 
+        }else {
+            tokenIndex = lastTokenIndex;
         }
 
         return parent;
@@ -335,9 +343,9 @@ public class Parser {
                 if (actualParams != null) {
                     lastTokenIndex = tokenIndex;
                     parent.appendChild(actualParams);
+                }else {
+                    tokenIndex = lastTokenIndex;
                 }
-
-                tokenIndex = lastTokenIndex;
 
                 int lineNumber = currentTokenLineNumber();
 
@@ -542,13 +550,13 @@ public class Parser {
     private Node isFormalParams() {
         Element parent = doc.createElement("FormalParams");
 
+        int lastTokenIndex = tokenIndex;
         Node formalParam = isFormalParam();
 
         if (formalParam != null) {
             parent.appendChild(formalParam);
 
-            int lastTokenIndex = tokenIndex;
-            int lineNumber = currentTokenLineNumber();
+            int lineNumber;
 
             while (isSymbol(",", true)) {
                 lastTokenIndex = tokenIndex;
@@ -572,6 +580,8 @@ public class Parser {
 
             return parent;
 
+        }else{
+            tokenIndex = lastTokenIndex;
         }
 
         return parent;
@@ -611,9 +621,9 @@ public class Parser {
             if (formalParams != null) {
                 lastTokenIndex = tokenIndex;
                 parent.appendChild(formalParams);
+            }else {
+                tokenIndex = lastTokenIndex;
             }
-
-            tokenIndex = lastTokenIndex;
 
             lastTokenIndex = tokenIndex;
             lineNumber = currentTokenLineNumber();
@@ -737,9 +747,9 @@ public class Parser {
                 }
 
                 parent.appendChild(simpleExpression);
+            }else {
+                tokenIndex--;
             }
-
-            tokenIndex--;
 
             return parent;
         }
@@ -1219,7 +1229,8 @@ public class Parser {
         if (!isA(JParserSym.CHAR_LITERAL)) {
             return null;
         } else {
-            parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            String text = tokens.get(tokenIndex - 1).value.toString();
+            parent.setTextContent(text.substring(1, text.length() - 1));
             parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
@@ -1232,7 +1243,8 @@ public class Parser {
         if (!isA(JParserSym.STRING_LITERAL)) {
             return null;
         } else {
-            parent.setTextContent(tokens.get(tokenIndex - 1).value.toString());
+            String text = tokens.get(tokenIndex - 1).value.toString();
+            parent.setTextContent(text.substring(1, text.length() - 1));
             parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
         }
 
@@ -1330,7 +1342,10 @@ public class Parser {
     }
 
     private boolean isA(int type) {
-        if (isDone()) return false;
+        if (isDone()) {
+            tokenIndex++;
+            return false;
+        }
         return tokens.get(tokenIndex++).sym == type;
     }
 
@@ -1340,7 +1355,7 @@ public class Parser {
 
     private int currentTokenLineNumber() {
         if (tokenIndex >= tokens.size()) return -1;
-        return tokens.get(tokenIndex-1).left;
+        return tokens.get(tokenIndex).left;
     }
 
     private int currentTokenType() {
@@ -1358,6 +1373,7 @@ public class Parser {
         } else {
             errorLog.add("Error: " + (exp ? "Expected: " : "") + expected);
         }
+        error = true;
     }
 
     private void dumpErrors() {

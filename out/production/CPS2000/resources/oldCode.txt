@@ -27,3 +27,20 @@
              | STRING_LITERAL:sl {: RESULT = doc.createElement("StringLiteral");  RESULT.setTextContent(sl); :}
              | UNIT_LITERAL:ul; {: RESULT = doc.createElement("UnitLiteral");  RESULT.setTextContent(ul); :}
              ;
+
+
+load "/Users/kylebonnici/IdeaProjects/CPS2000/src/resources/code.txt"
+
+let y : int = 6; let x : real = 6.0;
+
+function powAnsBy2(x : real , n : int) : real {function powAns(x : real , n : int ) : real {pow (x,n*ans); } }
+
+function powAnsBy2(x : real , n : int) : real { pow (x,n*ans); }
+
+function p() : real { pow (x,y); }
+
+function halt () :unit {
+    if (error!=0)  halt error;
+}
+
+function haltSystem() : unit { if (error!=0)  halt error; }

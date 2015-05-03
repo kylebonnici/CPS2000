@@ -79,7 +79,7 @@ functionDecl ::= FUNCTION IDENTIFIER:id BRACE_OPEN formalParams:fp BRACE_CLOSE C
                                                                                        RESULT.appendChild(b); :}
                 | FUNCTION IDENTIFIER:id BRACE_OPEN BRACE_CLOSE COLON TYPE:t block:b {: RESULT = doc.createElement("FunctionDecl");
                                                                                         RESULT.appendChild(generateNode("Identifier",id));
-                                                                                        RESULT.appendChild(RESULT = doc.createElement("FormalParams"));
+                                                                                        RESULT.appendChild(doc.createElement("FormalParams"));
                                                                                         RESULT.appendChild(generateNode("Type",t));
                                                                                         RESULT.appendChild(b); :}
              ;
@@ -129,8 +129,8 @@ factor ::= literal:l {: RESULT = doc.createElement("Factor"); RESULT.appendChild
 literal ::= BOOLEAN_LITERAL:bl {:RESULT = doc.createElement("Literal"); Node child = doc.createElement("BooleanLiteral");  child.setTextContent(bl.toString()); RESULT.appendChild(child);:}
          | INTEGER_LITERAL:il {:RESULT = doc.createElement("Literal");Node child = doc.createElement("IntegerLiteral");  child.setTextContent(il.toString()); RESULT.appendChild(child);:}
          | REAL_LITERAL:rl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("RealLiteral");  child.setTextContent(rl.toString()); RESULT.appendChild(child);:}
-         | CHAR_LITERAL:cl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("CharLiteral");  child.setTextContent(cl.toString()); RESULT.appendChild(child);:}
-         | STRING_LITERAL:sl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("StringLiteral");  child.setTextContent(sl.toString());RESULT.appendChild(child); :}
+         | CHAR_LITERAL:cl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("CharLiteral");  child.setTextContent(cl.toString().substring(1,cl.length()-1)); RESULT.appendChild(child);:}
+         | STRING_LITERAL:sl {:RESULT = doc.createElement("Literal");Node child = doc.createElement("StringLiteral");  child.setTextContent(sl.toString().substring(1,sl.length()-1));RESULT.appendChild(child); :}
          | UNIT_LITERAL:ul {:RESULT = doc.createElement("Literal");Node child = doc.createElement("UnitLiteral");  child.setTextContent(ul.toString()); RESULT.appendChild(child);:}
          ;
 

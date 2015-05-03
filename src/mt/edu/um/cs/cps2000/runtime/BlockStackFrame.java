@@ -50,7 +50,7 @@ public class BlockStackFrame  {
         FunctionStackFrame localFunc = getLocalFunction(identifier, signature);
 
         if (localFunc == null && parentFrame !=null){
-            parentFrame.getFunction(identifier,signature);
+            localFunc = parentFrame.getFunction(identifier,signature);
         }
 
         return localFunc;
@@ -100,6 +100,15 @@ public class BlockStackFrame  {
 
     public final boolean hasLocalVariable(String identifier){
         return getLocalVariable(identifier) != null;
+    }
+
+
+    public BlockStackFrame getParentFrame(){
+        return parentFrame;
+    }
+
+    public ArrayList<VariableStruct> getLocalVariables(){
+        return localVariables;
     }
 
 }

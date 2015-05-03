@@ -246,7 +246,7 @@ public class Lexer implements java_cup.runtime.Scanner {
     private boolean isCharLiteral(StringBuffer str) {
         boolean out = true;
 
-        if (str.toString().matches("'[\\x20-\\x7E]'")) {
+        if (str.toString().matches("'[\\x20-\\x7E]?'")) {
             tokens.add(symbol(JParserSym.CHAR_LITERAL,str.toString()));
         } else {
             out = false;
@@ -260,7 +260,7 @@ public class Lexer implements java_cup.runtime.Scanner {
     private boolean isStringLiteral(StringBuffer str) {
         boolean out = true;
 
-        if (str.toString().matches("\"[\\x20-\\x7E]+\"")) {
+        if (str.toString().matches("\"[\\x20-\\x7E]*\"")) {
             tokens.add(symbol(JParserSym.STRING_LITERAL,str.toString()));
         } else {
             out = false;

@@ -640,7 +640,7 @@ class CUP$JParser$actions {
 		Node b = (Node)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
 		 RESULT = doc.createElement("FunctionDecl");
                                                                                         RESULT.appendChild(generateNode("Identifier",id));
-                                                                                        RESULT.appendChild(RESULT = doc.createElement("FormalParams"));
+                                                                                        RESULT.appendChild(doc.createElement("FormalParams"));
                                                                                         RESULT.appendChild(generateNode("Type",t));
                                                                                         RESULT.appendChild(b); 
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("functionDecl",6, ((java_cup.runtime.Symbol)CUP$JParser$stack.elementAt(CUP$JParser$top-6)), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
@@ -921,7 +921,7 @@ class CUP$JParser$actions {
 		int clleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int clright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		String cl = (String)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("CharLiteral");  child.setTextContent(cl.toString()); RESULT.appendChild(child);
+		RESULT = doc.createElement("Literal");Node child = doc.createElement("CharLiteral");  child.setTextContent(cl.toString().substring(1,cl.length()-1)); RESULT.appendChild(child);
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
@@ -933,7 +933,7 @@ class CUP$JParser$actions {
 		int slleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int slright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		String sl = (String)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("StringLiteral");  child.setTextContent(sl.toString());RESULT.appendChild(child); 
+		RESULT = doc.createElement("Literal");Node child = doc.createElement("StringLiteral");  child.setTextContent(sl.toString().substring(1,sl.length()-1));RESULT.appendChild(child); 
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;

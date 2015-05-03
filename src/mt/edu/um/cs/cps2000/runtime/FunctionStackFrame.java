@@ -12,13 +12,13 @@ public class FunctionStackFrame extends BlockStackFrame {
     private ArrayList<VariableStruct> prams = new ArrayList<VariableStruct>();
     private String type = "Unknown";
     private String lineNumber = "-1";
-    private Node functionDef = null;
+    private Node funcBlock = null;
 
-    public FunctionStackFrame(BlockStackFrame parentFrame, String identifier, String lineNumber,Node functionDef){
+    public FunctionStackFrame(BlockStackFrame parentFrame, String identifier, String lineNumber,Node funcBlock){
         super(parentFrame);
         this.lineNumber = lineNumber;
         this.identifier = identifier;
-        this.functionDef = functionDef;
+        this.funcBlock = funcBlock;
     }
 
     public boolean hasPramVariable(String identifier){
@@ -84,6 +84,13 @@ public class FunctionStackFrame extends BlockStackFrame {
         return "unit";
     }
 
+    public VariableStruct getPram(int index){
+        if (index < prams.size()){
+            return prams.get(index);
+        }
+        return null;
+    }
+
     public int getNumberOfPrams(){
         return prams.size();
     }
@@ -94,5 +101,9 @@ public class FunctionStackFrame extends BlockStackFrame {
 
     public String getLineNumber(){
         return lineNumber;
+    }
+
+    public Node getFuncBlock(){
+        return funcBlock;
     }
 }

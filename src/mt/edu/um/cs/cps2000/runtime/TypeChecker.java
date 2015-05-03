@@ -3,12 +3,17 @@ package mt.edu.um.cs.cps2000.runtime;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class TypeChecker {
     protected Stack<BlockStackFrame> stackFrames;
     protected boolean showLineNumbers = false;
     private String lineNumber = "";
+    protected InputStream inStream = System.in;
+    private String lastExpressionType = null;
 
     public TypeChecker(){
         stackFrames = new Stack<BlockStackFrame>();
@@ -23,38 +28,51 @@ public class TypeChecker {
     }
 
     public boolean typeCheck(Element node){
-        BlockStackFrame typeCheck = new BlockStackFrame(null);
+        BlockStackFrame typeCheck = new BlockStackFrame(stackFrames.peek());
+        ArrayList<VariableStruct> vars = stackFrames.peek().getLocalVariables();
         stackFrames.push(typeCheck);
+        for (int loops = 0 ; loops < vars.size(); loops ++){
+            typeCheck.addLocalVariable(vars.get(loops));
+        }
         boolean ok = checkStatements(node.getChildNodes());
         stackFrames.pop();
         return ok;
     }
 
     private boolean checkStatement(Node node){
+        boolean ok = false;
         Node statement = node.getFirstChild();
         if (statement.getNodeName().equals("FunctionDecl")){
-            return checkFunctionDecl(statement);
+            ok = checkFunctionDecl(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("Assignment")){
-            return checkAssignment(statement);
+            ok = checkAssignment(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("VariableDecl")){
-            return checkVariableDecl(statement);
+            ok = checkVariableDecl(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("ReadStatement")){
-            return checkReadStatement(statement);
+            ok = checkReadStatement(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("WriteStatement")){
-            return checkWriteStatement(statement);
+            ok = checkWriteStatement(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("IfStatement")){
-            return checkIfStatement(statement);
+            ok = checkIfStatement(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("WhileStatement")){
-            return checkWhileStatement(statement);
+            ok = checkWhileStatement(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("HaltStatement")){
-            return checkHaltStatement(statement);
+            ok = checkHaltStatement(statement);
+            lastExpressionType = null;
         }else if (statement.getNodeName().equals("Block")){
-            return checkBlock(statement);
+            ok = checkBlock(statement);
         }else if (statement.getNodeName().equals("Expression")){
-            return checkExpression(statement);
+            ok = checkExpression(statement);
         }
 
-        return false;
+        return ok;
     }
 
     private boolean checkFunctionDecl(Node node){
@@ -70,31 +88,32 @@ public class TypeChecker {
 
         FunctionStackFrame funcFound = stackFrames.peek().getFunction(func);
 
-        if (funcFound !=null){
-            errorLogger(lineNumber, "Function '" + func.getIdentifier() + func.getFunctionSignature() + "' was already defined",false);
-            ok = false;
-        }else {
-            stackFrames.peek().addLocalFunction(func);
-        }
-
         stackFrames.push(func);
         func.setType(type.getTextContent());
         ok = ok && checkBlock(block);
+        stackFrames.pop();
+
         if (!func.getType().equals("unit")){
-            Node statement = block.getLastChild();
-            if (statement.getFirstChild().getNodeName().equals("Expression")){
-                String expType = getExpressionLiteralType(statement.getFirstChild());
+            if (lastExpressionType != null){
+                String expType = lastExpressionType;
                 if (!validType(func.getType(),expType)){
                     ok = false;
                     errorLogger(lineNumber, "Return type for function '" + func.getIdentifier() + func.getFunctionSignature() + "' should be '" + func.getType() + "' not '" + expType + "'",false);
                 }
             }else {
-                errorLogger(lineNumber, "Function '" + func.getIdentifier() + func.getFunctionSignature() + "' no return expression found",false);
+                errorLogger(lineNumber, "No return expression was found is function '" + func.getIdentifier() + func.getFunctionSignature() + "'",false);
                 ok = false;
             }
         }
-        stackFrames.pop();
 
+        if (funcFound !=null){
+            errorLogger(lineNumber, "Function '" + func.getIdentifier() + func.getFunctionSignature() + "' was already defined",false);
+            ok = false;
+        }else {
+            if (ok) {
+                stackFrames.peek().addLocalFunction(func);
+            }
+        }
 
         return ok;
     }
@@ -159,6 +178,7 @@ public class TypeChecker {
             String typeFound = getExpressionLiteralType(expression);
             if (!validType(type.getTextContent(),typeFound)) {
                 errorLogger(val.getAttribute("lineNumber"),"Found '" + typeFound + "' expecting '" + type.getTextContent() + "'",false);
+                ok = false;
             }
         }
 
@@ -296,6 +316,12 @@ public class TypeChecker {
     }
 
     private boolean checkExpression(Node node){
+        boolean ok = checkExpression2(node);
+        if (ok) lastExpressionType = getExpressionLiteralType(node);
+        return ok;
+    }
+
+    private boolean checkExpression2(Node node){
         NodeList list  = node.getChildNodes();
 
         boolean ok = checkSimpleExpression(node.getFirstChild());
@@ -463,9 +489,10 @@ public class TypeChecker {
                 errorLogger(lineNumber, "Function  '" + identifier.getTextContent()+signature + "' was not declared", false);
                 return false;
             }
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     private boolean checkActualPrams(Node node){
@@ -476,7 +503,7 @@ public class TypeChecker {
         for (int loops = 0 ; loops < list.getLength(); loops ++){
             if (checkExpression(list.item(loops))){
                 String type = getExpressionLiteralType(list.item(loops));
-                ok = !type.equals("unit");
+                ok = ok && !type.equals("unit");
                 if (!ok){
                     errorLogger(lineNumber, "Cannot have a 'unit' type in a function call", false);
                 }
@@ -490,7 +517,7 @@ public class TypeChecker {
 
     private boolean checkTypeCast(Node node){
         Node type = node.getChildNodes().item(0);
-        Node expression = node.getChildNodes().item(0);
+        Node expression = node.getChildNodes().item(1);
 
         boolean ok = checkExpression(expression);
 
@@ -527,7 +554,7 @@ public class TypeChecker {
         }
     }
 
-    private String getExpressionLiteralType(Node node){
+    protected String getExpressionLiteralType(Node node){
         NodeList children = node.getChildNodes();
 
         String type =  getSimpleExpressionLiteralType(children.item(0));
@@ -548,7 +575,7 @@ public class TypeChecker {
                 if (nextType.equals("char")) type = "bool";
                 else type = "ERROR";
             }else if (type.equals("string")){
-                if (nextType.equals("int")) type = "bool";
+                if (nextType.equals("string")) type = "bool";
                 else type = "ERROR";
             }
         }
@@ -556,7 +583,7 @@ public class TypeChecker {
         return type ;
     }
 
-    private String getSimpleExpressionLiteralType(Node node){
+    protected String getSimpleExpressionLiteralType(Node node){
         NodeList children = node.getChildNodes();
 
         String type =  getTermLiteralType(children.item(0));
@@ -586,7 +613,7 @@ public class TypeChecker {
         return type ;
     }
 
-    private String getTermLiteralType(Node node){
+    protected String getTermLiteralType(Node node){
         NodeList children = node.getChildNodes();
 
         String type =  getFactorLiteralType(children.item(0));
@@ -711,7 +738,7 @@ public class TypeChecker {
         //--------------------------------------------------------------------------------
     }
 
-    private String getSignatureFromActualParams(Node actualParams){
+    protected String getSignatureFromActualParams(Node actualParams){
         StringBuilder signature = new StringBuilder("(");
 
         NodeList expressions = actualParams.getChildNodes();

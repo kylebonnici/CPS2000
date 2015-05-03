@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Slx><Statement><Expression><SimpleExpression><Term><Factor><Literal><BooleanLiteral>true</BooleanLiteral></Literal></Factor></Term></SimpleExpression><RelationalOp lineNumber="1">==</RelationalOp><SimpleExpression><Term><Factor><Literal><BooleanLiteral>false</BooleanLiteral></Literal></Factor></Term></SimpleExpression></Expression></Statement></Slx>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Slx><Statement><WriteStatement><Identifier lineNumber="1">x</Identifier></WriteStatement></Statement></Slx>

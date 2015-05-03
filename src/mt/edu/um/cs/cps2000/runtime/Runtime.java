@@ -23,10 +23,8 @@ import java.util.Stack;
  * Created by kylebonnici on 01/05/15.
  */
 public class Runtime extends Execute{
-    private Stack<BlockStackFrame> stackFrames = new Stack<BlockStackFrame>() ;
-    private ArrayList<Symbol> tokens = new ArrayList<Symbol>();
     private Document doc;
-    private boolean useMyLexer = false;
+    private boolean useMyLexer = true;
     private boolean useMyParser = false;
 
     public Runtime(){
@@ -50,7 +48,7 @@ public class Runtime extends Execute{
         while(true) {
             boolean error = false;
             try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                BufferedReader br = new BufferedReader(new InputStreamReader(inStream));
                 System.out.print("sxl>");
                 String s = br.readLine();
                 Scanner lexer = null;
@@ -93,6 +91,7 @@ public class Runtime extends Execute{
                         parser.useLineNumbers = showLineNumbers;
                         parser.setDoc(doc);
                         parser.parse();
+                        error = parser.getError();
                     }else {
                         JParser parser = new JParser(lexer);
                         parser.setDoc(doc);
@@ -100,12 +99,13 @@ public class Runtime extends Execute{
                             Symbol sym = parser.parse();
                             doc.appendChild((Node) sym.value);
                         }catch (Exception e){
-                            e.printStackTrace();
+                            error = true;
+                            System.out.println(e.getMessage());
                         }
 
                     }
 
-                    run(doc.getDocumentElement());
+                    if (!error) run(doc.getDocumentElement());
 
                     try {
                         brLex.close();
@@ -119,9 +119,10 @@ public class Runtime extends Execute{
                     }
 
                 }
-
             } catch (IOException ex) {
                 System.out.println("System Error:" + ex.toString());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
             }
         }
 

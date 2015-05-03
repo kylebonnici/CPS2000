@@ -1,8 +1,6 @@
-let dd : int = 2.0;
-
 function pow( x : real, n : int ) : real
 {
-    let y : real = 4.0;
+    let y : real = 1.0;
     if (n>0){
         while (n>0){
             set y <- y * x;
@@ -16,9 +14,3 @@ function pow( x : real, n : int ) : real
     }
     y;
 }
-
-let a : int  = 1;
-
-let a: real = 1.0;
-
-set a <- pow(1.9,1);

@@ -24,7 +24,7 @@
 ⟨Factor⟩ ::= ⟨Literal⟩ | ⟨Identifier⟩ | ⟨FunctionCall⟩ | ⟨TypeCast⟩ | ⟨SubExpression⟩ | ⟨Unary⟩
 ⟨Term⟩ ::= ⟨Factor⟩ { ⟨MultiplicativeOp⟩ ⟨Factor⟩ }
 ⟨SimpleExpression⟩ ::= ⟨Term⟩ { ⟨AdditiveOp⟩ ⟨Term⟩ }
-⟨Expression⟩ ::= ⟨SimpleExpression⟩ { ⟨RelationalOp⟩ ⟨SimpleExpression⟩ }
+⟨Expression⟩ ::= ⟨SimpleExpression⟩ [ ⟨RelationalOp⟩ ⟨SimpleExpression⟩ ]
 ⟨Assignment⟩ ::= ‘set’ ⟨Identifier⟩ ‘<-’ ⟨Expression⟩
 ⟨VariableDecl⟩ ::= ‘let’ ⟨Identifier⟩ ‘:’ ⟨Type⟩ ‘=’ ⟨Expression⟩ ( ‘;’ | [ ‘in’ ⟨Block⟩ ] )
 

@@ -26,12 +26,12 @@ whitespace={newline} | [ \t\f]
 
 letter = [A-Za-z]
 digit=[0-9]
-printable = [\x20-\x7E]
+printable = [\x20\x21\x23-\x7E]
 type = "int" | "real" | "bool" | "char" | "string" | "unit"
 booleanLiteral = "true" | "false"
 integerLiteral = {digit}({digit})*
-charLiteral = "'"{printable}"'"
-stringLiteral = "\"" ({printable})+ "\""
+charLiteral = "'"{printable}?"'"
+stringLiteral = "\"" ({printable})* "\""
 unitLiteral = "#"
 realLiteral = {digit}({digit})* "." {digit}({digit})* (("e"|"E")("+"|"-") {digit}({digit})*)?
 identifier = "_"|{letter}("_"|{letter}|{digit})*
