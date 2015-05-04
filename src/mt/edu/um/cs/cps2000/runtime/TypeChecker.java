@@ -11,9 +11,9 @@ import java.util.Stack;
 public class TypeChecker {
     protected Stack<BlockStackFrame> stackFrames;
     protected boolean showLineNumbers = false;
-    private String lineNumber = "";
+    protected String lineNumber = "";
     protected InputStream inStream = System.in;
-    private String lastExpressionType = null;
+    protected String lastExpressionType = null;
 
     public TypeChecker(){
         stackFrames = new Stack<BlockStackFrame>();
@@ -23,7 +23,7 @@ public class TypeChecker {
         stackFrames.push(root);
     }
 
-    private boolean validType(String exp,String found){
+    protected boolean validType(String exp,String found){
         return found.equals("Unknown") || found.equals(exp) || exp.equals("any");
     }
 
@@ -264,7 +264,7 @@ public class TypeChecker {
         return true;
     }
 
-    private boolean checkBlock(Node node){
+    protected boolean checkBlock(Node node){
         BlockStackFrame blockStackFrame = new BlockStackFrame(stackFrames.peek());
         stackFrames.push(blockStackFrame);
         boolean ok = checkStatements(node.getChildNodes());
@@ -546,7 +546,7 @@ public class TypeChecker {
         return false;
     }
 
-    private void errorLogger(String lineNumber, String expected,boolean exp){
+    protected void errorLogger(String lineNumber, String expected,boolean exp){
         if (showLineNumbers) {
             System.out.println("Error: " + (exp ? "Expected: " : "") + expected + "  at line " + lineNumber);
         } else {

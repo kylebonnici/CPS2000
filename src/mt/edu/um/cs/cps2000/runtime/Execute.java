@@ -360,7 +360,26 @@ public class Execute extends TypeChecker {
         }
 
         stackFrames.push(func);
-        runBlock(func.getFuncBlock());
+        boolean ok = true;
+        lastExpressionType = null;
+        if (checkBlock(func.getFuncBlock())) {
+            if (!func.getType().equals("unit")){
+                if (lastExpressionType != null){
+                    String expType = lastExpressionType;
+                    if (!validType(func.getType(),expType)){
+                        ok = false;
+                        errorLogger(lineNumber, "Return type for function '" + func.getIdentifier() + func.getFunctionSignature() + "' should be '" + func.getType() + "' not '" + expType + "'",false);
+                    }
+                }else {
+                    errorLogger(lineNumber, "No return expression was found is function '" + func.getIdentifier() + func.getFunctionSignature() + "'",false);
+                    ok = false;
+                }
+            }
+            if (ok) runBlock(func.getFuncBlock());
+            else {
+                lastExpression = null;
+            }
+        }
         stackFrames.pop();
 
         return lastExpression;
