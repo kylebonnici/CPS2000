@@ -53,9 +53,8 @@ public class Runtime extends Execute{
                 String s = br.readLine();
                 Scanner lexer = null;
                 BufferedReader brLex = null;
-                boolean load = s.startsWith("load \"");
-                if (load) {
-                    String fileToLoad = s.substring("load \"".length(), s.length() - 1);
+                if (s.startsWith("#load \"")) {
+                    String fileToLoad = s.substring("#load \"".length(), s.length() - 1);
 
                     try {
                         brLex = new BufferedReader(new FileReader(fileToLoad));
@@ -63,6 +62,16 @@ public class Runtime extends Execute{
                         lexer = getLexer(brLex);
                     } catch (IOException e) {
                         System.out.println("Error reading file! " + e.getMessage());
+                    }
+                }else if (s.equals("#st")) {
+                    for (int loops = 0 ; loops < stackFrames.size(); loops ++){
+                        for (int loops2 = 0 ; loops2 < stackFrames.get(loops).getLocalVariables().size() ; loops2 ++) {
+                            VariableStruct var = stackFrames.get(loops).getLocalVariables().get(loops2);
+                            System.out.println("Variable " + var.getIdentifier() + " : " + var.getType() + " = " + var.getValue().toString());
+                        }
+                        for (int loops2 = 0 ; loops2 < stackFrames.get(loops).getLocalFunctions().size() ; loops2 ++) {
+                            System.out.println("Function: " + stackFrames.get(loops).getLocalFunctions().get(loops2).getIdentifier() + stackFrames.get(loops).getLocalFunctions().get(loops2).getFunctionSignature());
+                        }
                     }
                 } else {
                     // convert String into InputStream

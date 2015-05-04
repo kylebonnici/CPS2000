@@ -111,4 +111,8 @@ public class BlockStackFrame  {
         return localVariables;
     }
 
+    public ArrayList<FunctionStackFrame> getLocalFunctions(){
+        return localFunctions;
+    }
+
 }
