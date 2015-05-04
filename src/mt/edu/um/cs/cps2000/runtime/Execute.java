@@ -262,8 +262,8 @@ public class Execute extends TypeChecker {
                         sExp1 = new Integer(((Integer)sExp1).intValue() - ((Integer)sExp2).intValue());
                     }
                 }else if (expType.equals("real")){
-                    double d1 = (new Double(sExp1.toString())).intValue();
-                    double d2 = (new Double(sExp2.toString())).intValue();
+                    double d1 = (new Double(sExp1.toString())).doubleValue();
+                    double d2 = (new Double(sExp2.toString())).doubleValue();
                     if (op.equals("+")){
                         sExp1 = new Double(d1 + d2);
                     }else {
