@@ -2,14 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97149cb7-5cd1-47b1-94fd-40e8c7cabf42" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/fibonacci" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/JParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/JParserSym.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/Execute.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/Execute.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/parseandlexer/JParser$CUP$JParser$actions.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/parseandlexer/JParser$CUP$JParser$actions.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/parseandlexer/Parser.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/parseandlexer/Parser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/TypeChecker.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/TypeChecker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/VariableStruct.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/VariableStruct.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/resources/jflex.xml" afterPath="$PROJECT_DIR$/out/production/CPS2000/resources/jflex.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/jflex.xml" afterPath="$PROJECT_DIR$/src/resources/jflex.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/resources/oldCode.txt" afterPath="$PROJECT_DIR$/out/production/CPS2000/resources/oldCode.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/oldCode.txt" afterPath="$PROJECT_DIR$/src/resources/oldCode.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/resources/jparser.cup" afterPath="$PROJECT_DIR$/out/production/CPS2000/resources/jparser.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/jparser.cup" afterPath="$PROJECT_DIR$/src/resources/jparser.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/resources/mine.xml" afterPath="$PROJECT_DIR$/out/production/CPS2000/resources/mine.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/mine.xml" afterPath="$PROJECT_DIR$/src/resources/mine.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CPS2000.iws" />
@@ -35,14 +47,10 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.851852">
-              <caret line="291" column="0" selection-start-line="291" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.518518">
+              <caret line="1307" column="14" selection-start-line="1307" selection-start-column="14" selection-end-line="1307" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-                <element signature="e#526#527#0" expanded="true" />
-                <element signature="e#38567#38568#0" expanded="true" />
-                <element signature="e#38622#38623#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,8 +59,8 @@
       <file leaf-file-name="Execute.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6296296">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="-82.77778">
+              <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,44 +68,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lexer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Lexer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="207" column="74" selection-start-line="207" selection-start-column="74" selection-end-line="207" selection-end-column="74" />
-              <folding>
-                <element signature="e#275#283#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runner/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jparser.cup" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jparser.cup" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="81" column="107" selection-start-line="81" selection-start-column="107" selection-end-line="81" selection-end-column="107" />
+            <state vertical-scroll-proportion="0.06198347">
+              <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="code.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/code.txt">
+      <file leaf-file-name="fibonacci" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/resources/fibonacci">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="8" />
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FunctionStackFrame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#733#734#0" expanded="true" />
+                <element signature="e#791#792#0" expanded="true" />
+                <element signature="e#1359#1360#0" expanded="true" />
+                <element signature="e#1391#1392#0" expanded="true" />
+                <element signature="e#2363#2364#0" expanded="true" />
+                <element signature="e#2398#2399#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,18 +116,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Runtime.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6296296">
-              <caret line="107" column="33" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="bnf.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,19 +126,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+      <file leaf-file-name="Runtime.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4368231">
-              <caret line="705" column="65" selection-start-line="705" selection-start-column="65" selection-end-line="705" selection-end-column="65" />
+            <state vertical-scroll-proportion="15.0">
+              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7543#7544#0" expanded="true" />
-                <element signature="e#7614#7615#0" expanded="true" />
-                <element signature="e#7667#7668#0" expanded="true" />
-                <element signature="e#7738#7739#0" expanded="true" />
-                <element signature="e#17818#17819#0" expanded="true" />
-                <element signature="e#17878#17879#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.6296296">
+              <caret line="624" column="0" selection-start-line="624" selection-start-column="0" selection-end-line="624" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#7561#7562#0" expanded="true" />
+                <element signature="e#7632#7633#0" expanded="true" />
+                <element signature="e#7685#7686#0" expanded="true" />
+                <element signature="e#7756#7757#0" expanded="true" />
+                <element signature="e#17836#17837#0" expanded="true" />
+                <element signature="e#17896#17897#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,18 +199,19 @@
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/JFlexLexer.java" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/JParser.java" />
         <option value="$PROJECT_DIR$/src/resources/bnf.txt" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" />
         <option value="$PROJECT_DIR$/src/resources/jflex.flex" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/BlockStackFrame.java" />
         <option value="$PROJECT_DIR$/src/resources/code.txt" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Lexer.java" />
+        <option value="$PROJECT_DIR$/src/resources/oldCode.txt" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
+        <option value="$PROJECT_DIR$/src/resources/fibonacci" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java" />
         <option value="$PROJECT_DIR$/src/resources/jparser.cup" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Lexer.java" />
-        <option value="$PROJECT_DIR$/src/resources/oldCode.txt" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
       </list>
     </option>
   </component>
@@ -677,7 +682,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39976552" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39976552" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -687,7 +692,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28604925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28604925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -709,192 +714,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/JFlexLexer.java</url>
-          <line>738</line>
-          <properties />
-          <option name="timeStamp" value="457" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>1371</line>
-          <properties />
-          <option name="timeStamp" value="458" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>312</line>
-          <properties />
-          <option name="timeStamp" value="493" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>335</line>
-          <properties />
-          <option name="timeStamp" value="516" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>336</line>
-          <properties />
-          <option name="timeStamp" value="517" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>338</line>
-          <properties />
-          <option name="timeStamp" value="518" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>340</line>
-          <properties />
-          <option name="timeStamp" value="519" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>342</line>
-          <properties />
-          <option name="timeStamp" value="520" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>343</line>
-          <properties />
-          <option name="timeStamp" value="521" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>349</line>
-          <properties />
-          <option name="timeStamp" value="523" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>346</line>
-          <properties />
-          <option name="timeStamp" value="524" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java</url>
-          <line>294</line>
-          <properties />
-          <option name="timeStamp" value="526" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
-          <line>134</line>
-          <properties />
-          <option name="timeStamp" value="531" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
-          <line>136</line>
-          <properties />
-          <option name="timeStamp" value="532" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
-          <line>138</line>
-          <properties />
-          <option name="timeStamp" value="533" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>384</line>
-          <properties />
-          <option name="timeStamp" value="535" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>423</line>
-          <properties />
-          <option name="timeStamp" value="536" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>428</line>
-          <properties />
-          <option name="timeStamp" value="537" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="570" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="571" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>326</line>
-          <properties />
-          <option name="timeStamp" value="572" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>328</line>
-          <properties />
-          <option name="timeStamp" value="573" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>396</line>
-          <properties />
-          <option name="timeStamp" value="575" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>398</line>
-          <properties />
-          <option name="timeStamp" value="576" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>358</line>
-          <properties />
-          <option name="timeStamp" value="577" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>360</line>
-          <properties />
-          <option name="timeStamp" value="578" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>366</line>
-          <properties />
-          <option name="timeStamp" value="581" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>404</line>
-          <properties />
-          <option name="timeStamp" value="582" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>623</line>
-          <properties />
-          <option name="timeStamp" value="583" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>624</line>
-          <properties />
-          <option name="timeStamp" value="584" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="585" />
+      <option name="time" value="604" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -927,12 +750,12 @@
           <caret line="469" column="0" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7543#7544#0" expanded="true" />
-            <element signature="e#7614#7615#0" expanded="true" />
-            <element signature="e#7667#7668#0" expanded="true" />
-            <element signature="e#7738#7739#0" expanded="true" />
-            <element signature="e#17818#17819#0" expanded="true" />
-            <element signature="e#17878#17879#0" expanded="true" />
+            <element signature="e#7561#7562#0" expanded="true" />
+            <element signature="e#7632#7633#0" expanded="true" />
+            <element signature="e#7685#7686#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#17836#17837#0" expanded="true" />
+            <element signature="e#17896#17897#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -961,10 +784,6 @@
           <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-            <element signature="e#38567#38568#0" expanded="true" />
-            <element signature="e#38622#38623#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1066,10 +885,6 @@
           <caret line="1" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-            <element signature="e#38567#38568#0" expanded="true" />
-            <element signature="e#38622#38623#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1171,10 +986,6 @@
           <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-            <element signature="e#38567#38568#0" expanded="true" />
-            <element signature="e#38622#38623#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1253,10 +1064,6 @@
           <caret line="1306" column="39" selection-start-line="1306" selection-start-column="39" selection-end-line="1306" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-            <element signature="e#38567#38568#0" expanded="true" />
-            <element signature="e#38622#38623#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1343,28 +1150,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
           <folding>
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-            <element signature="e#2780#2781#0" expanded="true" />
-            <element signature="e#2834#2835#0" expanded="true" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3272#3273#0" expanded="true" />
-            <element signature="e#3319#3320#0" expanded="true" />
-            <element signature="e#3353#3354#0" expanded="true" />
-            <element signature="e#3412#3413#0" expanded="true" />
-            <element signature="e#3449#3450#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2434#2435#0" expanded="true" />
-            <element signature="e#2467#2468#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="false" />
+            <element signature="e#475#476#0" expanded="false" />
+            <element signature="e#2780#2781#0" expanded="false" />
+            <element signature="e#2834#2835#0" expanded="false" />
+            <element signature="e#3213#3214#0" expanded="false" />
+            <element signature="e#3272#3273#0" expanded="false" />
+            <element signature="e#3319#3320#0" expanded="false" />
+            <element signature="e#3353#3354#0" expanded="false" />
+            <element signature="e#3412#3413#0" expanded="false" />
+            <element signature="e#3449#3450#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1419,14 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="21" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/JFlexLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4814815">
@@ -1443,32 +1230,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.851852">
-          <caret line="291" column="0" selection-start-line="291" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
-            <element signature="e#38567#38568#0" expanded="true" />
-            <element signature="e#38622#38623#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runner/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="107" selection-start-line="81" selection-start-column="107" selection-end-line="81" selection-end-column="107" />
           <folding />
         </state>
       </provider>
@@ -1483,11 +1248,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
+          <caret line="109" column="19" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
+          <folding>
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1105#1106#0" expanded="true" />
+            <element signature="e#2040#2041#0" expanded="true" />
+            <element signature="e#2076#2077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/FunctionStackFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#1359#1360#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="e#2398#2399#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1499,39 +1287,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+    <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.6296296">
-          <caret line="107" column="33" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="33" />
+          <caret line="624" column="0" selection-start-line="624" selection-start-column="0" selection-end-line="624" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7561#7562#0" expanded="true" />
+            <element signature="e#7632#7633#0" expanded="true" />
+            <element signature="e#7685#7686#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#17836#17837#0" expanded="true" />
+            <element signature="e#17896#17897#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6296296">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="-82.77778">
+          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+    <entry file="file://$PROJECT_DIR$/src/resources/fibonacci">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4368231">
-          <caret line="705" column="65" selection-start-line="705" selection-start-column="65" selection-end-line="705" selection-end-column="65" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.518518">
+          <caret line="1307" column="14" selection-start-line="1307" selection-start-column="14" selection-end-line="1307" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7543#7544#0" expanded="true" />
-            <element signature="e#7614#7615#0" expanded="true" />
-            <element signature="e#7667#7668#0" expanded="true" />
-            <element signature="e#7738#7739#0" expanded="true" />
-            <element signature="e#17818#17819#0" expanded="true" />
-            <element signature="e#17878#17879#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="15.0">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/jparser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06198347">
+          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

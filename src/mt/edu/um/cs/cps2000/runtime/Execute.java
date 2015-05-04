@@ -136,7 +136,8 @@ public class Execute extends TypeChecker {
 
         VariableStruct var = stackFrames.peek().getVariable(identifier.getTextContent());
 
-        printVariable(var);
+        //printVariable(var);
+        System.out.print(var.getValue().toString());
     }
 
     private void printVariable(VariableStruct var){
@@ -352,7 +353,7 @@ public class Execute extends TypeChecker {
         Node identifier = node.getChildNodes().item(0);
         Node actualParams = node.getChildNodes().item(1);
 
-        FunctionStackFrame func = stackFrames.peek().getFunction(identifier.getTextContent(),getSignatureFromActualParams(actualParams));
+        FunctionStackFrame func = stackFrames.peek().getFunction(identifier.getTextContent(),getSignatureFromActualParams(actualParams)).clone();
 
         for (int loops = 0 ; loops < actualParams.getChildNodes().getLength(); loops ++){
             Node expression = actualParams.getChildNodes().item(loops);

@@ -90,6 +90,16 @@ public class TypeChecker {
 
         stackFrames.push(func);
         func.setType(type.getTextContent());
+
+        if (funcFound !=null){
+            errorLogger(lineNumber, "Function '" + func.getIdentifier() + func.getFunctionSignature() + "' was already defined",false);
+            ok = false;
+        }else {
+            if (ok) {
+                stackFrames.peek().getParentFrame().addLocalFunction(func);
+            }
+        }
+
         ok = ok && checkBlock(block);
         stackFrames.pop();
 
@@ -103,15 +113,6 @@ public class TypeChecker {
             }else {
                 errorLogger(lineNumber, "No return expression was found is function '" + func.getIdentifier() + func.getFunctionSignature() + "'",false);
                 ok = false;
-            }
-        }
-
-        if (funcFound !=null){
-            errorLogger(lineNumber, "Function '" + func.getIdentifier() + func.getFunctionSignature() + "' was already defined",false);
-            ok = false;
-        }else {
-            if (ok) {
-                stackFrames.peek().addLocalFunction(func);
             }
         }
 
@@ -537,9 +538,9 @@ public class TypeChecker {
 
     private boolean isValidCast(String from, String to ){
         if (from.equals("int")){
-            if (to.equals("int") || to.equals("real") || to.equals("char")) return true;
+            if (to.equals("int") || to.equals("real") || to.equals("char") || to.equals("string")) return true;
         }else if (from.equals("real")){
-            if (to.equals("int") || to.equals("real")) return true;
+            if (to.equals("int") || to.equals("real") || to.equals("string")) return true;
         }else if (from.equals("char")){
             if (to.equals("int") || to.equals("real" ) || to.equals("string") || to.equals("char")) return true;
         }else if (from.equals("Unknown")){

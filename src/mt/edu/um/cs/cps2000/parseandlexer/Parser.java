@@ -297,6 +297,8 @@ public class Parser {
 
             int lineNumber;
 
+            lastTokenIndex = tokenIndex;
+
             while (isSymbol(",", true)) {
                 lastTokenIndex = tokenIndex;
                 lineNumber = currentTokenLineNumber();
@@ -558,6 +560,7 @@ public class Parser {
 
             int lineNumber;
 
+            lastTokenIndex = tokenIndex;
             while (isSymbol(",", true)) {
                 lastTokenIndex = tokenIndex;
                 lineNumber = currentTokenLineNumber();
@@ -1302,7 +1305,7 @@ public class Parser {
             String sym = (currentTokenType() == JParserSym.PLUS? "+" : (currentTokenType() == JParserSym.MINUS? "-" : "not")) ;
             parent.setTextContent(sym);
             tokenIndex++;
-            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
+            //parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
             return parent;
         }
 

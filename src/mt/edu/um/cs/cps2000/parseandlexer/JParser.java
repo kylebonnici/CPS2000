@@ -885,7 +885,7 @@ class CUP$JParser$actions {
 		int blleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int blright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		Boolean bl = (Boolean)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal"); Node child = doc.createElement("BooleanLiteral");  child.setTextContent(bl.toString()); RESULT.appendChild(child);
+		RESULT = doc.createElement("Literal"); RESULT.appendChild(generateNode("BooleanLiteral",bl.toString()));
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
@@ -897,7 +897,7 @@ class CUP$JParser$actions {
 		int illeft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int ilright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		Integer il = (Integer)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("IntegerLiteral");  child.setTextContent(il.toString()); RESULT.appendChild(child);
+		RESULT = doc.createElement("Literal"); RESULT.appendChild(generateNode("IntegerLiteral",il.toString()));
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
@@ -909,7 +909,7 @@ class CUP$JParser$actions {
 		int rlleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int rlright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		Double rl = (Double)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("RealLiteral");  child.setTextContent(rl.toString()); RESULT.appendChild(child);
+		RESULT = doc.createElement("Literal"); RESULT.appendChild(generateNode("RealLiteral",rl.toString()));
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
@@ -921,7 +921,7 @@ class CUP$JParser$actions {
 		int clleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int clright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		String cl = (String)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("CharLiteral");  child.setTextContent(cl.toString().substring(1,cl.length()-1)); RESULT.appendChild(child);
+		RESULT = doc.createElement("Literal"); RESULT.appendChild(generateNode("CharLiteral",cl.toString().substring(1,cl.length()-1)));
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
@@ -933,7 +933,7 @@ class CUP$JParser$actions {
 		int slleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int slright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		String sl = (String)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("StringLiteral");  child.setTextContent(sl.toString().substring(1,sl.length()-1));RESULT.appendChild(child); 
+		RESULT = doc.createElement("Literal"); RESULT.appendChild(generateNode("StringLiteral",sl.toString().substring(1,sl.length()-1))); 
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
@@ -945,7 +945,7 @@ class CUP$JParser$actions {
 		int ulleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int ulright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		String ul = (String)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		RESULT = doc.createElement("Literal");Node child = doc.createElement("UnitLiteral");  child.setTextContent(ul.toString()); RESULT.appendChild(child);
+		RESULT = doc.createElement("Literal"); RESULT.appendChild(generateNode("UnitLiteral",ul.toString()));
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("literal",5, ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;

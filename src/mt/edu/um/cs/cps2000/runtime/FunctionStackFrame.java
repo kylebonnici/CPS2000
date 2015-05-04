@@ -106,4 +106,13 @@ public class FunctionStackFrame extends BlockStackFrame {
     public Node getFuncBlock(){
         return funcBlock;
     }
+
+    public FunctionStackFrame clone(){
+        FunctionStackFrame out = new FunctionStackFrame(this.getParentFrame(), this.identifier,lineNumber,funcBlock);
+        for(int loops = 0 ; loops < getNumberOfPrams(); loops++){
+            out.addPram(this.getPram(loops).clone());
+        }
+        out.setType(this.getType());
+        return out;
+    }
 }

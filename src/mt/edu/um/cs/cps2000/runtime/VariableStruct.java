@@ -104,4 +104,9 @@ public class VariableStruct {
             setGodValue(value,type+1);
         }
     }
+
+    public VariableStruct clone(){
+        VariableStruct out = new VariableStruct(this.identifier,this.type);
+        return out;
+    }
 }

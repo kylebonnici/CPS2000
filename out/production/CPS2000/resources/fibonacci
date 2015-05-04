@@ -1,0 +1,65 @@
+function fibonacciRec(n : int) : real {
+    let out : real = 0.0;
+
+    if (n==0) {
+        set out <- 0.0;
+    }
+
+    if (n==1) {
+        set out <- 1.0;
+    }
+
+    if (n>1){
+        set out <- fibonacciRec(n-1) + fibonacciRec(n-2);
+    }
+
+    out;
+}
+
+function fibonacciTail(n : int) : real {
+    function tail(n: int, n1 : int, n2 : int): real {
+        let out : real = (real)n;
+
+         if (n==0) {
+             set out <- (real)n1;
+         }else{
+             set out <- tail(n-1, n2, n1+n2);
+         }
+
+         out;
+    }
+
+    tail(n,0,1);
+}
+
+function writeln(val:string) : unit {
+    let nl : char = (char)10;
+    write val;
+    write nl;
+}
+
+function writeln(val:int) : unit {
+    let nl : char = (char)10;
+    write val;
+    write nl;
+}
+
+function fibLoop( start : int , stop : int, b : bool) : unit {
+    let loops : int = start;
+    let strFib : string = "fibonacci ";
+    let is : string = " is ";
+    while (start <= stop) {
+        write strFib;
+        write start;
+        write is;
+
+        if (b){
+            let temp : real = fibonacciRec(start);
+            writeln((string)temp);
+        }else {
+            let temp : real = fibonacciTail(start);
+            writeln((string)temp);
+        }
+        set start <- start + 1;
+    }
+}
