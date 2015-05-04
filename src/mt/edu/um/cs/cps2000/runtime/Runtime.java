@@ -96,11 +96,10 @@ public class Runtime extends Execute{
                         JParser parser = new JParser(lexer);
                         parser.setDoc(doc);
                         try {
-                            Symbol sym = parser.parse();
+                            Symbol sym  = parser.parse();
                             doc.appendChild((Node) sym.value);
                         }catch (Exception e){
                             error = true;
-                            System.out.println(e.getMessage());
                         }
 
                     }

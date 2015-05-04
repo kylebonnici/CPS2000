@@ -458,7 +458,7 @@ public class TypeChecker {
     }
 
     private boolean checkUnary(Node node){
-        String op = node.getTextContent();
+        String op = ((Element)node).getAttribute("op");
         Node expression = node.getFirstChild();
 
         boolean ok = checkExpression(expression);
@@ -726,7 +726,7 @@ public class TypeChecker {
     }
 
     private String getUnaryLiteralType(Node node){
-        Node expression = node.getChildNodes().item(1);
+        Node expression = node.getChildNodes().item(0);
         return getExpressionLiteralType(expression);
     }
 

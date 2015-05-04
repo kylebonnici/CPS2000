@@ -27,7 +27,7 @@ public class VariableStruct {
     public String getType(){
         if (type.equals("god")){
             if (value instanceof Integer) return "int";
-            else if (value instanceof Double) return "double";
+            else if (value instanceof Double) return "real";
             else if (value instanceof Character) return "char";
             else if (value instanceof String) return "string";
             else if (value instanceof Boolean) return "bool";

@@ -153,7 +153,7 @@ subExpression ::= BRACE_OPEN expression:ex BRACE_CLOSE   {: RESULT = doc.createE
                   ;
 
 unary ::= PLUS expression:ex {: RESULT = doc.createElement("Unary"); RESULT.setTextContent("+"); RESULT.appendChild(ex); :}
-          | MINUS expression:ex {: RESULT = doc.createElement("Unary"); RESULT.setTextContent("-"); RESULT.appendChild(ex); :}
+          | MINUS expression:ex {: RESULT = doc.createElement("Unary"); ((Element)RESULT).setAttribute("op","-"); RESULT.appendChild(ex); :}
           | NOT expression:ex {: RESULT = doc.createElement("Unary"); RESULT.setTextContent("not"); RESULT.appendChild(ex); :}
           ;
 

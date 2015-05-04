@@ -204,7 +204,7 @@ public class Parser {
         String value = (token.sym == JParserSym.PLUS? "+": (token.sym == JParserSym.MINUS? "-" : (token.sym == JParserSym.NOT? "not" : ""))  );
 
         if (!value.equals("")) {
-            parent.setTextContent(token.value.toString());
+            parent.setAttribute("op",token.value.toString());
 
                 int lastTokenIndex = tokenIndex;
                 int lineNumber = currentTokenLineNumber();

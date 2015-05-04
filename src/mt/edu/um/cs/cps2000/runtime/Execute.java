@@ -419,7 +419,7 @@ public class Execute extends TypeChecker {
         Node expression = node.getFirstChild();
 
         Object ex = runExpression(expression);
-        String op = node.getTextContent();
+        String op = ((Element)node).getAttribute("op");
 
         if (ex instanceof Boolean){
             return new Boolean(!ex.toString().equals("true"));
@@ -428,7 +428,7 @@ public class Execute extends TypeChecker {
             if (op.equals("-")) i = -i;
             return new Integer(i);
         }else if (ex instanceof Double){
-            double d = new Integer(ex.toString()).intValue();
+            double d = new Double(ex.toString()).doubleValue();
             if (op.equals("-")) d = -d;
             return new Double(d);
         }

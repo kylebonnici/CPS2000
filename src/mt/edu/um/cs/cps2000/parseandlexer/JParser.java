@@ -5,6 +5,7 @@
 
 package mt.edu.um.cs.cps2000.parseandlexer;
 
+import com.sun.java_cup.internal.runtime.Symbol;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -1030,7 +1031,7 @@ class CUP$JParser$actions {
 		int exleft = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).left;
 		int exright = ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()).right;
 		Node ex = (Node)((java_cup.runtime.Symbol) CUP$JParser$stack.peek()).value;
-		 RESULT = doc.createElement("Unary"); RESULT.setTextContent("-"); RESULT.appendChild(ex); 
+		 RESULT = doc.createElement("Unary"); ((Element)RESULT).setAttribute("op","-"); RESULT.appendChild(ex); 
               CUP$JParser$result = parser.getSymbolFactory().newSymbol("unary",22, ((java_cup.runtime.Symbol)CUP$JParser$stack.elementAt(CUP$JParser$top-1)), ((java_cup.runtime.Symbol)CUP$JParser$stack.peek()), RESULT);
             }
           return CUP$JParser$result;
