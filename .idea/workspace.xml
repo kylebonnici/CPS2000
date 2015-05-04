@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97149cb7-5cd1-47b1-94fd-40e8c7cabf42" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/Execute.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/Execute.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/TypeChecker.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/TypeChecker.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/resources/jflex.xml" afterPath="$PROJECT_DIR$/out/production/CPS2000/resources/jflex.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/jflex.xml" afterPath="$PROJECT_DIR$/src/resources/jflex.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/resources/oldCode.txt" afterPath="$PROJECT_DIR$/out/production/CPS2000/resources/oldCode.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/oldCode.txt" afterPath="$PROJECT_DIR$/src/resources/oldCode.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CPS2000.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Execute.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Execute.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73465705">
-              <caret line="379" column="38" selection-start-line="379" selection-start-column="38" selection-end-line="379" selection-end-column="38" />
+            <state vertical-scroll-proportion="-5.6296296">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,8 +115,8 @@
       <file leaf-file-name="Runtime.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.814815">
-              <caret line="107" column="35" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="35" />
+            <state vertical-scroll-proportion="-5.6296296">
+              <caret line="107" column="33" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,19 +134,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.2222223">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.4368231">
+              <caret line="705" column="65" selection-start-line="705" selection-start-column="65" selection-end-line="705" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7543#7544#0" expanded="true" />
                 <element signature="e#7614#7615#0" expanded="true" />
                 <element signature="e#7667#7668#0" expanded="true" />
                 <element signature="e#7738#7739#0" expanded="true" />
-                <element signature="e#17625#17626#0" expanded="true" />
-                <element signature="e#17685#17686#0" expanded="true" />
+                <element signature="e#17818#17819#0" expanded="true" />
+                <element signature="e#17878#17879#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -200,8 +205,8 @@
         <option value="$PROJECT_DIR$/src/resources/jparser.cup" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/parseandlexer/Lexer.java" />
         <option value="$PROJECT_DIR$/src/resources/oldCode.txt" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
       </list>
     </option>
   </component>
@@ -797,39 +802,99 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>381</line>
+          <line>384</line>
           <properties />
           <option name="timeStamp" value="535" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>420</line>
+          <line>423</line>
           <properties />
           <option name="timeStamp" value="536" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>425</line>
+          <line>428</line>
           <properties />
           <option name="timeStamp" value="537" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>271</line>
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
+          <line>21</line>
           <properties />
-          <option name="timeStamp" value="568" />
+          <option name="timeStamp" value="570" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="571" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
-          <line>74</line>
+          <line>326</line>
           <properties />
-          <option name="timeStamp" value="569" />
+          <option name="timeStamp" value="572" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>328</line>
+          <properties />
+          <option name="timeStamp" value="573" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>396</line>
+          <properties />
+          <option name="timeStamp" value="575" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>398</line>
+          <properties />
+          <option name="timeStamp" value="576" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>358</line>
+          <properties />
+          <option name="timeStamp" value="577" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>360</line>
+          <properties />
+          <option name="timeStamp" value="578" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>366</line>
+          <properties />
+          <option name="timeStamp" value="581" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>404</line>
+          <properties />
+          <option name="timeStamp" value="582" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>623</line>
+          <properties />
+          <option name="timeStamp" value="583" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java</url>
+          <line>624</line>
+          <properties />
+          <option name="timeStamp" value="584" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="570" />
+      <option name="time" value="585" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -866,8 +931,8 @@
             <element signature="e#7614#7615#0" expanded="true" />
             <element signature="e#7667#7668#0" expanded="true" />
             <element signature="e#7738#7739#0" expanded="true" />
-            <element signature="e#17625#17626#0" expanded="true" />
-            <element signature="e#17685#17686#0" expanded="true" />
+            <element signature="e#17818#17819#0" expanded="true" />
+            <element signature="e#17878#17879#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1418,16 +1483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.814815">
-          <caret line="107" column="35" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/bnf.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1444,28 +1499,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.2222223">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state vertical-scroll-proportion="-5.6296296">
+          <caret line="107" column="33" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7543#7544#0" expanded="true" />
-            <element signature="e#7614#7615#0" expanded="true" />
-            <element signature="e#7667#7668#0" expanded="true" />
-            <element signature="e#7738#7739#0" expanded="true" />
-            <element signature="e#17625#17626#0" expanded="true" />
-            <element signature="e#17685#17686#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73465705">
-          <caret line="379" column="38" selection-start-line="379" selection-start-column="38" selection-end-line="379" selection-end-column="38" />
+        <state vertical-scroll-proportion="-5.6296296">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4368231">
+          <caret line="705" column="65" selection-start-line="705" selection-start-column="65" selection-end-line="705" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7543#7544#0" expanded="true" />
+            <element signature="e#7614#7615#0" expanded="true" />
+            <element signature="e#7667#7668#0" expanded="true" />
+            <element signature="e#7738#7739#0" expanded="true" />
+            <element signature="e#17818#17819#0" expanded="true" />
+            <element signature="e#17878#17879#0" expanded="true" />
           </folding>
         </state>
       </provider>

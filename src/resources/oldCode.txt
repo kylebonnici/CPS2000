@@ -37,7 +37,9 @@ function powAnsBy2(x : real , n : int) : real {function powAns(x : real , n : in
 
 function powAnsBy2(x : real , n : int) : real { pow (x,n*ans); }
 
-function p() : int {ans; }
+function p() : int {5+5; }
+
+let x : int = p();
 
 function halt () :unit {
     if (error!=0)  halt error;

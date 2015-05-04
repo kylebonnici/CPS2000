@@ -366,7 +366,10 @@ public class TypeChecker {
 
         for (int loops = 2 ; loops < list.getLength() && ok; loops +=2 ){
             String op = list.item(loops-1).getTextContent();
-            if (expType.equals("char") || expType.equals("string") || expType.equals("unit")) {
+            if (expType.equals("unit")) {
+                errorLogger(lineNumber, "Operator '" + op + "' cannot be used with type  '" + expType + "'", false);
+                ok = false;
+            }else if (expType.equals("char") || expType.equals("string") || expType.equals("unit")) {
                 errorLogger(lineNumber, "Operator '" + op + "' cannot be used with type  '" + expType + "'", false);
                 ok = false;
             }else if ((op.equals("and") && !expType.equals("bool")) || (!op.equals("and") && expType.equals("bool"))){
@@ -700,7 +703,7 @@ public class TypeChecker {
 
         String signature = getSignatureFromActualParams(actualPrams);
 
-        FunctionStackFrame func = stackFrames.peek().getLocalFunction(identifier.getTextContent(), signature);
+        FunctionStackFrame func = stackFrames.peek().getFunction(identifier.getTextContent(), signature);
 
         if (func == null){
             return "Unknown";

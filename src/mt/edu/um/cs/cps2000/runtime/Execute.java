@@ -375,7 +375,10 @@ public class Execute extends TypeChecker {
                     ok = false;
                 }
             }
-            if (ok) runBlock(func.getFuncBlock());
+            if (ok) {
+                runBlock(func.getFuncBlock());
+                if (func.getType().equals("unit")) lastExpression = null;
+            }
             else {
                 lastExpression = null;
             }
