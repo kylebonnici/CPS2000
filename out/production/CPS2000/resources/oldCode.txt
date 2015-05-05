@@ -46,3 +46,7 @@ function halt () :unit {
 }
 
 function haltSystem() : unit { if (error!=0)  halt error; }
+
+#load "/Users/kylebonnici/IdeaProjects/CPS2000/src/resources/fibonacci"
+#load "/Users/kylebonnici/IdeaProjects/CPS2000/src/resources/code.txt"
+fibLoop(3,pow(3.0,2),false);

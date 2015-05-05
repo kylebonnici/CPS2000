@@ -95,6 +95,11 @@ public class BlockStackFrame  {
             }
         }
 
+
+        if (parentFrame instanceof FunctionStackFrame){
+            return parentFrame.getLocalVariable(identifier);
+        }
+
         return null;
     }
 

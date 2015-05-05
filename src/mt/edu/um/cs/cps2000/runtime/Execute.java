@@ -122,10 +122,11 @@ public class Execute extends TypeChecker {
             System.out.print("Val " + var.getIdentifier() + " : " + var.getType() + " = ");
             BufferedReader br = new BufferedReader(new InputStreamReader(inStream));
             String s = br.readLine();
-            while (!var.setValue(s)){
-                System.out.print("Val " + var.getIdentifier() + " : " + var.getType() + " = ");
-                s = br.readLine();
-            }
+            var.setValue(s);
+            //while (!var.setValue(s)){
+            //    System.out.print("Val " + var.getIdentifier() + " : " + var.getType() + " = ");
+            //    s = br.readLine();
+            //}
         }catch (IOException ex){
             ex.printStackTrace();
         }

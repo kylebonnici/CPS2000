@@ -16,15 +16,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Stack;
 
 /**
  * Created by kylebonnici on 01/05/15.
  */
 public class Runtime extends Execute{
     private Document doc;
-    private boolean useMyLexer = true;
+    private boolean useMyLexer = false;
     private boolean useMyParser = false;
 
     public Runtime(){
@@ -73,7 +71,19 @@ public class Runtime extends Execute{
                             System.out.println("Function: " + stackFrames.get(loops).getLocalFunctions().get(loops2).getIdentifier() + stackFrames.get(loops).getLocalFunctions().get(loops2).getFunctionSignature());
                         }
                     }
-                } else {
+                }else if (s.equals("#cup")) {
+                    this.useMyParser = false;
+                    continue;
+                }else if (s.equals("#jflex")) {
+                    this.useMyLexer = false;
+                    continue;
+                }else if (s.equals("#mylexer")) {
+                    this.useMyLexer = true;
+                    continue;
+                }else if (s.equals("#myparser")) {
+                    this.useMyParser = true;
+                    continue;
+                }  else {
                     // convert String into InputStream
                     InputStream is = new ByteArrayInputStream(s.getBytes());
                     showLineNumbers = false;
@@ -115,8 +125,9 @@ public class Runtime extends Execute{
 
                     if (!error) run(doc.getDocumentElement());
 
+                    brLex.close();
+
                     try {
-                        brLex.close();
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
                         Transformer transformer = transformerFactory.newTransformer();
                         DOMSource source = new DOMSource(doc);

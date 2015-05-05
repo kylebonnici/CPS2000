@@ -299,7 +299,7 @@ public class Parser {
 
             lastTokenIndex = tokenIndex;
 
-            while (isSymbol(",", true)) {
+            while (isSymbol(",", false)) {
                 lastTokenIndex = tokenIndex;
                 lineNumber = currentTokenLineNumber();
 
@@ -561,7 +561,7 @@ public class Parser {
             int lineNumber;
 
             lastTokenIndex = tokenIndex;
-            while (isSymbol(",", true)) {
+            while (isSymbol(",", false)) {
                 lastTokenIndex = tokenIndex;
                 lineNumber = currentTokenLineNumber();
 
@@ -624,8 +624,6 @@ public class Parser {
             if (formalParams != null) {
                 lastTokenIndex = tokenIndex;
                 parent.appendChild(formalParams);
-            }else {
-                tokenIndex = lastTokenIndex;
             }
 
             lastTokenIndex = tokenIndex;
@@ -1287,7 +1285,7 @@ public class Parser {
             String sym = (currentTokenType() == JParserSym.MULTIPLICATION? "*" : (currentTokenType() == JParserSym.DIVISION? "/" : "and")) ;
             parent.setTextContent(sym);
             tokenIndex++;
-            parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
+            //parent.setAttribute("lineNumber", currentTokenLineNumber() + "");
             return parent;
         }
         tokenIndex++;
@@ -1352,9 +1350,6 @@ public class Parser {
         return tokens.get(tokenIndex++).sym == type;
     }
 
-    private boolean isAWith(int type, String str) {
-        return tokens.get(tokenIndex).value.equals(str) & isA(type);
-    }
 
     private int currentTokenLineNumber() {
         if (tokenIndex >= tokens.size()) return -1;
