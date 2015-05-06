@@ -51,7 +51,7 @@ precedence left        RELATIONAL_OP;
 precedence right       statement;
 
 sxl ::= statement:s sxl:sx {: RESULT = sx; RESULT.insertBefore(s,RESULT.getFirstChild()); :}
-        | statement:s {: RESULT = doc.createElement("Slx"); RESULT.appendChild(s); :}
+        | /* empty */ {: RESULT = doc.createElement("Slx"); :}
         ;
 
 

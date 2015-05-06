@@ -41,17 +41,17 @@ public class VariableStruct {
         return value;
     }
 
-    public boolean setValue(String value){
+    public boolean setValue(Object value){
         try{
             if (type.equals("int")){
-                this.value = Integer.parseInt(value);
+                this.value = Integer.parseInt(value.toString());
             }else if (type.equals("real")){
-                this.value = Double.parseDouble(value);
+                this.value = Double.parseDouble(value.toString());
             }else if (type.equals("bool")){
-                this.value = Boolean.parseBoolean(value);
+                this.value = Boolean.parseBoolean(value.toString());
             }else if (type.equals("char")){
-                if (value.length() == 1) {
-                    this.value = new Character(value.charAt(0));
+                if (value.toString().length() == 1) {
+                    this.value = new Character(value.toString().charAt(0));
                 }else{
                     throw new Exception("");
                 }
@@ -69,29 +69,29 @@ public class VariableStruct {
         return false;
     }
 
-    private void setGodValue(String value){
+    private void setGodValue(Object value){
         setGodValue(value,1);
     }
 
-    private void setGodValue(String value, int type){
+    private void setGodValue(Object value, int type){
         try{
             switch (type){
                 case 1:
-                    this.value = Integer.parseInt(value);
+                    this.value = Integer.parseInt(value.toString());
                     break;
                 case 2:
-                    this.value = Double.parseDouble(value);
+                    this.value = Double.parseDouble(value.toString());
                     break;
                 case 3:
                     if (value.equals("true") || value.equals("false")){
-                        this.value = Boolean.parseBoolean(value);
+                        this.value = Boolean.parseBoolean(value.toString());
                     }else{
                         throw new Exception("");
                     }
                     break;
                 case 4:
-                    if (value.length() == 1) {
-                        this.value = new Character(value.charAt(0));
+                    if (value instanceof Character) {
+                        this.value = new Character(value.toString().charAt(0));
                     }else{
                         throw new Exception("");
                     }

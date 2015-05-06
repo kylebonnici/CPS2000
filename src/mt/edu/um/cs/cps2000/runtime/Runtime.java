@@ -127,6 +127,8 @@ public class Runtime extends Execute{
 
                     brLex.close();
 
+
+                    /* Save xml file
                     try {
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
                         Transformer transformer = transformerFactory.newTransformer();
@@ -136,6 +138,7 @@ public class Runtime extends Execute{
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    */
 
                 }
             } catch (IOException ex) {

@@ -31,7 +31,7 @@ public class Execute extends TypeChecker {
                 runStatement(node);
                 if (stackFrames.peek().getParentFrame() == null && lastExpression!=null){
                     VariableStruct ans = stackFrames.peek().getVariable("ans");
-                    ans.setValue(lastExpression.toString());
+                    ans.setValue(lastExpression);
                     printVariable(ans);
                 }
             }
@@ -84,7 +84,7 @@ public class Execute extends TypeChecker {
 
         VariableStruct var = stackFrames.peek().getVariable(identifier.getTextContent());
 
-        var.setValue(runExpression(expression).toString());
+        var.setValue(runExpression(expression));
     }
 
     private void runIfStatement(Node node){
@@ -152,7 +152,7 @@ public class Execute extends TypeChecker {
 
         VariableStruct var = new VariableStruct(identifier.getTextContent(),type.getTextContent());
 
-        var.setValue(runExpression(expression).toString());
+        var.setValue(runExpression(expression));
 
         if (node.getChildNodes().getLength() == 4){
             Node block = node.getChildNodes().item(3);
@@ -358,7 +358,7 @@ public class Execute extends TypeChecker {
 
         for (int loops = 0 ; loops < actualParams.getChildNodes().getLength(); loops ++){
             Node expression = actualParams.getChildNodes().item(loops);
-            func.getPram(loops).setValue(runExpression(expression).toString());
+            func.getPram(loops).setValue(runExpression(expression));
         }
 
         stackFrames.push(func);
@@ -407,7 +407,7 @@ public class Execute extends TypeChecker {
             }
             return new Double(ex.toString());
         }else if (type.getTextContent().equals("string")){
-            return ex.toString();
+            return new String(ex.toString());
         }else if (type.getTextContent().equals("char")){
             if (ex instanceof Character) return ex;
             return new Character((char)(new Integer(ex.toString())).intValue());
