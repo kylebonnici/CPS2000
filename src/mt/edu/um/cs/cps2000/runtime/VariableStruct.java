@@ -70,40 +70,9 @@ public class VariableStruct {
     }
 
     private void setGodValue(Object value){
-        setGodValue(value,1);
+        this.value = value;
     }
 
-    private void setGodValue(Object value, int type){
-        try{
-            switch (type){
-                case 1:
-                    this.value = Integer.parseInt(value.toString());
-                    break;
-                case 2:
-                    this.value = Double.parseDouble(value.toString());
-                    break;
-                case 3:
-                    if (value.equals("true") || value.equals("false")){
-                        this.value = Boolean.parseBoolean(value.toString());
-                    }else{
-                        throw new Exception("");
-                    }
-                    break;
-                case 4:
-                    if (value instanceof Character) {
-                        this.value = new Character(value.toString().charAt(0));
-                    }else{
-                        throw new Exception("");
-                    }
-                    break;
-                case 5:
-                    this.value = value;
-                    break;
-            }
-        }catch (Exception e){
-            setGodValue(value,type+1);
-        }
-    }
 
     public VariableStruct clone(){
         VariableStruct out = new VariableStruct(this.identifier,this.type);

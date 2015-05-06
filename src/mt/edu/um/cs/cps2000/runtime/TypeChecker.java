@@ -528,25 +528,28 @@ public class TypeChecker {
         if (ok){
             String expType = getExpressionLiteralType(expression);
             ok = isValidCast(expType,type.getTextContent());
-            if(!ok){
-                errorLogger(lineNumber, "Cannot cast from '" + expType + "' to '" + type.getTextContent() + "'", false);
-            }
         }
 
         return ok;
     }
 
     private boolean isValidCast(String from, String to ){
-        if (from.equals("int")){
-            if (to.equals("int") || to.equals("real") || to.equals("char") || to.equals("string")) return true;
+        if (from.equals(to.toString())){
+            errorLogger(lineNumber, "Useless cast from '" + from.toString() + "' to '" + to.toString() + "'", false);
+            return false;
+        }else if (to.equals("string") ){
+            return !from.equals("unit");
+        }else if (from.equals("int")){
+            if (to.equals("real") || to.equals("char") || to.equals("string")) return true;
         }else if (from.equals("real")){
-            if (to.equals("int") || to.equals("real") || to.equals("string")) return true;
+            if (to.equals("int") || to.equals("string")) return true;
         }else if (from.equals("char")){
-            if (to.equals("int") || to.equals("real" ) || to.equals("string") || to.equals("char")) return true;
+            if (to.equals("int") || to.equals("real" ) || to.equals("string")) return true;
         }else if (from.equals("Unknown")){
             return true;
         }
 
+        errorLogger(lineNumber, "Cannot cast from '" + from.toString() + "' to '" + to.toString() + "'", false);
         return false;
     }
 
