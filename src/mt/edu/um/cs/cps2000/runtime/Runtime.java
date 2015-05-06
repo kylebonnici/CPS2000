@@ -35,7 +35,10 @@ public class Runtime extends Execute{
                 lexer.useLineNumbers = showLineNumbers;
                 return lexer;
         }
-        else return new JFlexLexer(br);
+        else {
+            JFlexLexer lexer = new JFlexLexer(br);
+            return lexer;
+        }
     }
 
 

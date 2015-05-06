@@ -11,13 +11,21 @@ import java_cup.runtime.*;
 %eofval}
 
 %{
+
       StringBuffer string = new StringBuffer();
+
+      boolean useLineNumbers = true;
+
 
       private Symbol symbol(int type) {
         return new Symbol(type, yyline + 1, yycolumn);
       }
       private Symbol symbol(int type, Object value) {
         return new Symbol(type, yyline + 1, yycolumn, value);
+      }
+
+      private void dumpError() {
+          System.out.println("Unexpected char ' " + yytext() + " ' " + (useLineNumbers? "on line "  + (yyline+1)  : "") );
       }
 %}
 
@@ -31,13 +39,13 @@ type = "int" | "real" | "bool" | "char" | "string" | "unit"
 booleanLiteral = "true" | "false"
 integerLiteral = {digit}({digit})*
 charLiteral = "'"{printable}?"'"
-stringLiteral = "\"" ({printable})* "\""
 unitLiteral = "#"
 realLiteral = {digit}({digit})* "." {digit}({digit})* (("e"|"E")("+"|"-") {digit}({digit})*)?
 identifier = "_"|{letter}("_"|{letter}|{digit})*
 
 relationalOp = "<"|">"|"=="|"!="|"<="|">="
 
+%state STRING
 
 %%
 
@@ -59,12 +67,12 @@ relationalOp = "<"|">"|"=="|"!="|"<="|">="
     ";" { return symbol(JParserSym.SEMICOLON); }
     ":" { return symbol(JParserSym.COLON); }
     "=" { return symbol(JParserSym.EQ); }
+    \"  {string.setLength(0); string.append( yytext() ); yybegin(STRING); }
     {relationalOp} { return symbol(JParserSym.RELATIONAL_OP,yytext()); }
     {type} { return symbol(JParserSym.TYPE,yytext()); }
     {booleanLiteral} { return symbol(JParserSym.BOOLEAN_LITERAL,new Boolean(yytext()));}
     {integerLiteral} { return symbol(JParserSym.INTEGER_LITERAL,new Integer(yytext()));}
     {charLiteral} { return symbol(JParserSym.CHAR_LITERAL, yytext());}
-    {stringLiteral} { return symbol(JParserSym.STRING_LITERAL,yytext());}
     {unitLiteral} { return symbol(JParserSym.UNIT_LITERAL,yytext());}
     {realLiteral} { return symbol(JParserSym.REAL_LITERAL, new Double(yytext()));}
     "set" { return symbol(JParserSym.SET);}
@@ -79,6 +87,20 @@ relationalOp = "<"|">"|"=="|"!="|"<="|">="
     "read" { return symbol(JParserSym.READ);}
     "write" { return symbol(JParserSym.WRITE);}
     {identifier} { return symbol(JParserSym.IDENTIFIER,yytext()); }
-    [^] {throw new Error(yytext()+":"+(yyline+1)); }
 
 }
+
+<STRING> {
+\"                             {string.append( yytext() ); yybegin(YYINITIAL);
+                               return symbol(JParserSym.STRING_LITERAL,
+                               string.toString()); }
+[^\n\r\"\\]+                   { string.append( yytext() ); }
+\\t                            { string.append('\t'); }
+\\n                            { string.append('\n'); }
+
+\\r                            { string.append('\r'); }
+\\\"                           { string.append('\"'); }
+\\                             { string.append('\\'); }
+}
+
+ [^] { dumpError(); }
