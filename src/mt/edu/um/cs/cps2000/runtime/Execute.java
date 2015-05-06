@@ -55,8 +55,10 @@ public class Execute extends TypeChecker {
             lastExpression = null;
         }else if (statement.getNodeName().equals("IfStatement")){
             runIfStatement(statement);
+            lastExpression = null;
         }else if (statement.getNodeName().equals("WhileStatement")){
             runWhileStatement(statement);
+            lastExpression = null;
         }else if (statement.getNodeName().equals("HaltStatement")){
             runHaltStatement(statement);
         }else if (statement.getNodeName().equals("Block")){

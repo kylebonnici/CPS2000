@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97149cb7-5cd1-47b1-94fd-40e8c7cabf42" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/TypeChecker.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/TypeChecker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/VariableStruct.class" afterPath="$PROJECT_DIR$/out/production/CPS2000/mt/edu/um/cs/cps2000/runtime/VariableStruct.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" afterPath="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
     </list>
     <ignored path="CPS2000.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Execute.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Execute.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6296296">
-              <caret line="409" column="0" selection-start-line="409" selection-start-column="0" selection-end-line="409" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5295405">
+              <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,7 +92,7 @@
       <file leaf-file-name="Runtime.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-63.88889">
+            <state vertical-scroll-proportion="-5.5555553">
               <caret line="131" column="21" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -135,10 +131,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TypeChecker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5733042">
+            <state vertical-scroll-proportion="-9.703704">
               <caret line="541" column="38" selection-start-line="541" selection-start-column="38" selection-end-line="541" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -208,9 +204,9 @@
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java" />
         <option value="$PROJECT_DIR$/src/resources/code.txt" />
         <option value="$PROJECT_DIR$/src/resources/jparser.cup" />
-        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java" />
         <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java" />
+        <option value="$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java" />
       </list>
     </option>
   </component>
@@ -1297,16 +1293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-63.88889">
-          <caret line="131" column="21" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/VariableStruct.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1322,19 +1308,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6296296">
-          <caret line="409" column="0" selection-start-line="409" selection-start-column="0" selection-end-line="409" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/TypeChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5733042">
+        <state vertical-scroll-proportion="-9.703704">
           <caret line="541" column="38" selection-start-line="541" selection-start-column="38" selection-end-line="541" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1344,6 +1320,26 @@
             <element signature="e#7756#7757#0" expanded="true" />
             <element signature="e#17849#17850#0" expanded="true" />
             <element signature="e#17909#17910#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Runtime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5555553">
+          <caret line="131" column="21" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mt/edu/um/cs/cps2000/runtime/Execute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5295405">
+          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
